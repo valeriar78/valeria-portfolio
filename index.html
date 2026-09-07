@@ -243,6 +243,13 @@
     letter-spacing:0.3em;
     text-transform:uppercase;
     color:var(--ink-soft);
+    text-decoration:none;
+    cursor:pointer;
+    transition: color .2s ease;
+  }
+  .hero .scroll-cue:hover,
+  .hero .scroll-cue:focus-visible{
+    color: var(--ink);
   }
 
   /* ---------- About ---------- */
@@ -512,7 +519,7 @@
   <div class="eyebrow">Creative Director — Womenswear &amp; Menswear</div>
   <h1>Valeria Ribichini</h1>
   <p class="role">25+ Years · Milan / Rome</p>
-  <div class="scroll-cue">Scroll</div>
+  <a class="scroll-cue" href="#about">Scroll</a>
 </section>
 
 <section class="about-wrapper" id="about">
