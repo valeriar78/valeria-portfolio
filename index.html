@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valeria Ribichini — Creative Director</title>
+<meta name="description" content="Valeria Ribichini — Creative Director working across contemporary and fast-fashion Womenswear and Menswear. Portfolio: Doppelgänger, Musae, I AM, Miss Sixty.">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Favicon & Canonical -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://www.valeriaribichini.com/">
+
+<!-- Google Fonts — Cormorant Garamond per la resa cross-platform dei font serif -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.valeriaribichini.com/">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Valeria Ribichini — Creative Director">
+<meta property="og:description" content="Creative Director working across contemporary and fast-fashion markets in Womenswear and Menswear.">
+<meta property="og:image" content="https://www.valeriaribichini.com/img/doppelganger-01.jpg">
+<meta property="og:image:width" content="1800">
+<meta property="og:image:height" content="1125">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Valeria Ribichini — Creative Director">
+<meta name="twitter:description" content="Creative Director working across contemporary and fast-fashion markets in Womenswear and Menswear.">
+<meta name="twitter:image" content="https://www.valeriaribichini.com/img/doppelganger-01.jpg">
+
+<style>
+
+  :root{
+    --paper: #ffffff;
+    --ink: #000000;
+    --ink-soft: #4d4d4d;
+    --line: #e5e5e5;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+
+  /* Skip link per accessibilità tastiera */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 16px;
+    z-index: 1001;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 16px;
+  }
+
+  .sr-only{
+    position:absolute;
+    width:1px; height:1px;
+    padding:0; margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Indicatore di focus per accessibilità da tastiera */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+
+  /* Titoli principali Sans-Serif Bold/Black */
+  h1,h2,h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .eyebrow{
+    font-size:12.5px;
+    font-family: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+    font-style: italic;
+    color:var(--ink-soft);
+  }
+
+  a{ color:inherit; }
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 22px 5vw;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background .25s ease, backdrop-filter .25s ease, border-color .25s ease;
+  }
+
+  header.site-nav.scrolled{
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav-name{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    cursor: pointer;
+    transition: opacity .2s ease;
+  }
+  .nav-name:hover{ opacity: 0.6; }
+
+  nav.links{ display:flex; gap:32px; }
+  nav.links a{
+    font-size: 12.5px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    transition: opacity .2s ease;
+  }
+  nav.links a:hover{ opacity: 0.6; }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:none;
+    padding:4px;
+    cursor:pointer;
+    width:26px;
+    height:20px;
+    position:relative;
+  }
+  .nav-toggle span{
+    position:absolute;
+    left:0; right:0;
+    height:1.5px;
+    background:var(--ink);
+    transition: transform .25s ease, opacity .25s ease, top .25s ease;
+  }
+  .nav-toggle span:nth-child(1){ top:0; }
+  .nav-toggle span:nth-child(2){ top:9px; }
+  .nav-toggle span:nth-child(3){ top:18px; }
+  .nav-toggle.open span:nth-child(1){ top:9px; transform:rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ top:9px; transform:rotate(-45deg); }
+
+  nav.links.mobile-open{
+    display:flex;
+    position:absolute;
+    top:100%;
+    left:0; right:0;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom:1px solid var(--line);
+    padding: 8px 0 20px 0;
+  }
+  nav.links.mobile-open a{
+    width:100%;
+    text-align:center;
+    padding:14px 6vw;
+    font-size:13px;
+  }
+  nav.links.mobile-open a:hover{ opacity:1; background:#f5f5f5; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    height: 100vh;
+    height: 100dvh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 0 6vw;
+    position:relative;
+  }
+  .hero .eyebrow{ margin-bottom:22px; }
+  .hero h1{
+    font-size:clamp(30px, 4.5vw, 56px);
+    line-height:1.05;
+    letter-spacing: 0.08em;
+    margin:0 0 20px 0;
+    white-space: nowrap;
+  }
+  .hero p.role{
+    font-size:14px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .hero .scroll-cue{
+    position:absolute;
+    bottom:40px;
+    font-size:10px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- About ---------- */
+  section.about-wrapper{
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #121212;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+    margin: 0;
+  }
+  
+  .about-content{
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 6vw;
+    text-align: left;
+  }
+  
+  section.about-wrapper .eyebrow{ 
+    margin-bottom: 24px; 
+    color: #a0a0a0;
+  }
+  
+  section.about-wrapper p{
+    font-size: clamp(18px, 2.1vw, 26px);
+    line-height: 1.35;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.005em;
+  }
+  
+  section.about-wrapper .langs{
+    margin-top: 80px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  
+  section.about-wrapper .langs div{
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888888;
+  }
+  
+  section.about-wrapper .langs strong{
+    display: block;
+    font-family: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 0;
+    color: #ffffff;
+    text-transform: none;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* ---------- Project section ---------- */
+  section.project{
+    padding: 90px 0 40px 0;
+    border-top:1px solid var(--line);
+  }
+  
+  .project-head{
+    padding: 0 6vw;
+    max-width: 1400px;
+    margin: 0 auto 50px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    align-items: start;
+  }
+
+  .project-head .eyebrow {
+    margin-bottom: 4px;
+  }
+
+  .project-head h2{
+    font-size: clamp(28px, 4.2vw, 52px);
+    letter-spacing: -0.02em;
+    margin: 4px 0 20px 0;
+    line-height: 1.0;
+  }
+
+  .project-head p{
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .project-stats{
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .project-stats div{
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .project-stats strong{
+    display: block;
+    font-family: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13.5px;
+    letter-spacing: 0;
+    color: var(--ink);
+    text-transform: none;
+    margin-top: 2px;
+  }
+
+  .plate{
+    max-width:1400px;
+    margin: 0 auto 40px auto;
+    padding: 0 6vw;
+  }
+  .plate img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .plate figcaption{
+    padding: 10px 2px 30px 2px;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* Full-bleed plate — breaks out of the 1400px container, edge to edge */
+  .plate.full-bleed{
+    max-width: none;
+    padding: 0;
+  }
+  .plate.full-bleed figcaption{
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .note{
+    max-width:640px;
+    margin: 10px auto 60px auto;
+    padding: 0 6vw;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  /* ---------- Contact ---------- */
+  section.contact{
+    border-top:1px solid var(--line);
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 6vw;
+    text-align:center;
+  }
+  section.contact h2{
+    font-size: clamp(26px, 4.2vw, 50px);
+    letter-spacing: -0.02em;
+    margin:24px 0 34px 0;
+  }
+  section.contact a.mail{
+    display:inline-block;
+    font-size:16px;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:4px;
+    margin-bottom: 12px;
+  }
+  section.contact a.phone{
+    display:inline-block;
+    font-size:14px;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    color: var(--ink-soft);
+    transition: color .2s ease;
+  }
+  section.contact a.phone:hover{
+    color: var(--ink);
+  }
+  section.contact .socials{
+    margin-top: 28px;
+    display:flex;
+    justify-content:center;
+    gap: 24px;
+  }
+  section.contact .socials a{
+    font-size:11px;
+    font-weight: 700;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color: var(--ink-soft);
+    transition: color .2s ease;
+  }
+  section.contact .socials a:hover{
+    color: var(--ink);
+  }
+  footer{
+    text-align:center;
+    padding: 30px 6vw 50px 6vw;
+    font-size:10px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width: 900px){
+    .project-head{
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 720px){
+    nav.links{ display:none; }
+    nav.links.mobile-open{ display:flex; }
+    .nav-toggle{ display:block; }
+    section.about-wrapper p{ font-size:20px; }
+    .hero h1{ white-space:normal; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-nav" id="siteNav">
+  <a href="#top" class="nav-name" id="navLogo">Valeria Ribichini</a>
+  <nav class="links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#doppelganger">Doppelgänger</a>
+    <a href="#musae">Musae</a>
+    <a href="#iam">I AM</a>
+    <a href="#misssixty">Miss Sixty</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top">
+  <div class="eyebrow">Creative Director — Womenswear &amp; Menswear</div>
+  <h1>Valeria Ribichini</h1>
+  <p class="role">25+ Years · Milan / Rome</p>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<section class="about-wrapper" id="about">
+  <div class="about-content">
+    <h2 class="sr-only">About</h2>
+    <div class="eyebrow">About</div>
+    <p>I'm a Creative Director working across contemporary and fast-fashion markets. I design and develop collections end-to-end while overseeing brand communication strategy — from concept and material sourcing through to campaign direction and go-to-market.</p>
+    <div class="langs">
+      <div>NATIVE<strong>Italian</strong></div>
+      <div>FLUENT<strong>English</strong></div>
+      <div>FLUENT<strong>French</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="project" id="doppelganger">
+  <div class="project-head">
+    <div>
+      <div class="eyebrow">2024 — Today · Creative Director · Rome</div>
+      <h2>Doppelgänger</h2>
+      <div class="project-stats">
+        <div>Team<strong>4 Designers + 1 Graphic</strong></div>
+        <div>Collections<strong>2 / year</strong></div>
+        <div>Points of Sale<strong>122 — Europe &amp; UAE</strong></div>
+      </div>
+    </div>
+    <div>
+      <p>Creative direction and team management for the Womenswear and Menswear lines — spanning trend forecasting and product development, brand identity and campaigns, lookbooks and accessories, store design and visual merchandising.</p>
+    </div>
+  </div>
+
+  <figure class="plate"><img src="img/doppelganger-00.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 mood board with colour palette, research imagery and technical flat sketches for jacket and pleated skirt" decoding="async"><figcaption>S/S 2025 — Mood board &amp; technical design</figcaption></figure>
+  <figure class="plate"><img src="img/doppelganger-01.jpg" width="1800" height="1125" alt="Doppelgänger Womenswear S/S 2025 main advertising campaign photograph" loading="lazy" decoding="async"><figcaption>S/S 2025 — Campaign</figcaption></figure>
+  <figure class="plate full-bleed"><img src="img/doppelganger-02.jpg" width="1800" height="1125" alt="Doppelgänger Womenswear S/S 2025 full-width editorial campaign visual" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/doppelganger-03.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 lookbook collection overview" loading="lazy" decoding="async"><figcaption>S/S 2025 — Lookbook</figcaption></figure>
+  <figure class="plate"><img src="img/doppelganger-04.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 lookbook showcasing tailored jackets and trousers" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/doppelganger-05.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 lookbook contemporary womenswear silhouettes" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/doppelganger-06.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 garment construction, textile details and finishing" loading="lazy" decoding="async"><figcaption>S/S 2025 — Construction &amp; details</figcaption></figure>
+  <figure class="plate"><img src="img/doppelganger-07.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 leather goods, footwear and accessories" loading="lazy" decoding="async"><figcaption>S/S 2025 — Accessories</figcaption></figure>
+</section>
+
+<section class="project" id="musae">
+  <div class="project-head">
+    <div>
+      <div class="eyebrow">2015 — 2016 · Founder / Creative Director · Paris</div>
+      <h2>Musae</h2>
+      <div class="project-stats">
+        <div>Team<strong>2 Designers + 1 Graphic</strong></div>
+        <div>Collections<strong>2 / year</strong></div>
+        <div>Points of Sale<strong>5 — Europe</strong></div>
+      </div>
+    </div>
+    <div>
+      <p>Founded and led two mid-to-high womenswear collections end-to-end — from concept, sourcing and product development through commercial management, wholesale distribution and brand image.</p>
+    </div>
+  </div>
+
+  <figure class="plate"><img src="img/musae-01.jpg" width="1800" height="1125" alt="Musae Summer 01 collection editorial lookbook feature" loading="lazy" decoding="async"><figcaption>Summer 01</figcaption></figure>
+  <figure class="plate"><img src="img/musae-02.jpg" width="1800" height="1125" alt="Musae Summer 01 contemporary womenswear outfit" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/musae-03.jpg" width="1800" height="1125" alt="Musae Summer 01 collection minimalist dress and outerwear" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/musae-04.jpg" width="1800" height="1125" alt="Musae Summer 01 collection lookbook photography" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/musae-sketch-ss01.jpg" width="1800" height="1125" alt="Musae Summer 01 technical design sketches and garment specifications" loading="lazy" decoding="async"><figcaption>Summer 01 — Technical Sketches</figcaption></figure>
+  <figure class="plate"><img src="img/musae-05.jpg" width="1800" height="1125" alt="Musae Fall 01 autumn collection tailoring and knits" loading="lazy" decoding="async"><figcaption>Fall 01</figcaption></figure>
+  <figure class="plate"><img src="img/musae-06.jpg" width="1800" height="1125" alt="Musae Fall 01 womenswear collection editorial photo" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/musae-07.jpg" width="1800" height="1125" alt="Musae Fall 01 collection lookbook showcasing structured coats" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/musae-08.jpg" width="1800" height="1125" alt="Musae Fall 01 seasonal eveningwear and drapery details" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/musae-09.jpg" width="1800" height="1125" alt="Musae Fall 01 Look 06 development showing technical sketch side by side with final garment" loading="lazy" decoding="async"><figcaption>Fall 01 — Look 06, sketch to garment</figcaption></figure>
+</section>
+
+<section class="project" id="iam">
+  <div class="project-head">
+    <div>
+      <div class="eyebrow">2020 — 2023 · Creative Director · Rome</div>
+      <h2>I AM</h2>
+      <div class="project-stats">
+        <div>Team<strong>5 Designers + 3 Graphic</strong></div>
+        <div>Collections<strong>2 / year</strong></div>
+        <div>Points of Sale<strong>45 — Italy</strong></div>
+      </div>
+    </div>
+    <div>
+      <p>Creative direction, brand image and style office team management for fast-fashion collection development — from trend forecasting through denim advertising, seasonal campaigns and visual merchandising.</p>
+    </div>
+  </div>
+
+  <figure class="plate"><img src="img/iam-01.jpg" width="1800" height="1125" alt="I AM denim S/S 2021 advertising campaign key look" loading="lazy" decoding="async"><figcaption>Denim — S/S 2021 campaign</figcaption></figure>
+  <figure class="plate"><img src="img/iam-02.jpg" width="1800" height="1125" alt="I AM denim line S/S 2021 promotional photography" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/iam-03.jpg" width="1800" height="1125" alt="I AM Fall 2022 fast-fashion collection seasonal lookbook" loading="lazy" decoding="async"><figcaption>Fall 2022</figcaption></figure>
+  <figure class="plate"><img src="img/iam-04.jpg" width="1800" height="1125" alt="I AM Winter 2023 contemporary apparel campaign" loading="lazy" decoding="async"><figcaption>Winter 2023</figcaption></figure>
+</section>
+
+<section class="project" id="misssixty">
+  <div class="project-head">
+    <div>
+      <div class="eyebrow">2001 — 2013 · Junior Designer to Creative Director · Rome</div>
+      <h2>Miss Sixty</h2>
+      <div class="project-stats">
+        <div>Team<strong>6 Designers + 4 Graphic</strong></div>
+        <div>Collections<strong>2 / year</strong></div>
+        <div>Points of Sale<strong>350+ — Worldwide</strong></div>
+      </div>
+    </div>
+    <div>
+      <p>Rose from Junior Designer to Creative Director over twelve years within Sixty Spa's Miss Sixty line — from denim and main collections through licensing and special projects, including a New York Fashion Week capsule and collaborations with Renault, Harrods and Bread&amp;Butter.</p>
+    </div>
+  </div>
+
+  <figure class="plate"><img src="img/misssixty-01.jpg" width="1800" height="1125" alt="Miss Sixty Bread&amp;Butter 2012 exhibition space and architectural installation design" loading="lazy" decoding="async"><figcaption>Bread&amp;Butter 2012 — Installation</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-03.jpg" width="1800" height="1125" alt="Miss Sixty Bread&amp;Butter architectural booth display and product staging" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/misssixty-04.jpg" width="1800" height="1125" alt="Miss Sixty Bread&amp;Butter trade fair lounge area and brand installation" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/misssixty-05.jpg" width="1800" height="1125" alt="Miss Sixty international advertising campaigns archive overview" loading="lazy" decoding="async"><figcaption>Campaigns</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-05B.jpg" width="1800" height="1125" alt="Miss Sixty S/S 2013 fashion show runway collection with six models on catwalk" loading="lazy" decoding="async"><figcaption>S/S 2013 — Catwalk</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-06.jpg" width="1800" height="1125" alt="Miss Sixty F/W 2009-2010 catwalk fashion show presentation" loading="lazy" decoding="async"><figcaption>F/W 2009-2010 — Catwalk</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-07.jpg" width="1800" height="1125" alt="Miss Sixty S/S 2009 catwalk collection highlights" loading="lazy" decoding="async"><figcaption>S/S 2009 — Catwalk</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-08.jpg" width="1800" height="1125" alt="Miss Sixty F/W 2008-2009 runway models presentation" loading="lazy" decoding="async"><figcaption>F/W 2008-2009 — Catwalk</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-09.jpg" width="1800" height="1125" alt="Miss Sixty S/S 2008 fashion week catwalk show" loading="lazy" decoding="async"><figcaption>S/S 2008 — Catwalk</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-10.jpg" width="1800" height="1125" alt="Miss Sixty S/S 2007 runway collection presentation" loading="lazy" decoding="async"><figcaption>S/S 2007 — Catwalk</figcaption></figure>
+  <figure class="plate full-bleed"><img src="img/misssixty-11.jpg" width="1800" height="1125" alt="Miss Sixty international editorial magazine coverage and press clippings" loading="lazy" decoding="async"><figcaption>Press — Miss Sixty brand archive</figcaption></figure>
+  <p class="note">Selected work from a twelve-year tenure, 2001–2013.</p>
+</section>
+
+<section class="contact" id="contact">
+  <div class="eyebrow">Get in touch</div>
+  <h2>Inquiries</h2>
+  <a class="mail" href="mailto:info@valeriaribichini.com">info@valeriaribichini.com</a>
+  <a class="phone" href="tel:+393479542900">+39 347 954 2900</a>
+  <div class="socials">
+    <a href="https://it.linkedin.com/in/valeria-ribichini-02779122" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://www.instagram.com/valeriaribichini/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2026 Valeria Ribichini</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('mobile-open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+
+  navLinks.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) {
+      navLinks.classList.remove('mobile-open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    }
+  });
+
+  document.getElementById('navLogo').addEventListener('click', () => {
+    navLinks.classList.remove('mobile-open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Open menu');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+      navToggle.focus();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 720 && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    }
+  });
+
+  const siteNav = document.getElementById('siteNav');
+  const SCROLL_THRESHOLD = 60;
+  let scrollTicking = false;
+
+  function updateNavBackground() {
+    siteNav.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+    scrollTicking = false;
+  }
+
+  function onScroll() {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(updateNavBackground);
+      scrollTicking = true;
+    }
+  }
+
+  updateNavBackground();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
+</html>
