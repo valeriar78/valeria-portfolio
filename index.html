@@ -113,6 +113,7 @@
     font-size:13.5px;
     font-family: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
     font-style: italic;
+    letter-spacing: 0.08em;
     color:var(--ink-soft);
   }
 
@@ -315,6 +316,56 @@
     font-weight: 400;
   }
 
+  /* ---------- About reveal animation (minimal: line + letter-spacing + fade) ---------- */
+  .about-content .eyebrow{
+    position: relative;
+    display: inline-block;
+    padding-bottom: 14px;
+    opacity: 0;
+    letter-spacing: 0.14em;
+    transition: opacity 1s ease, letter-spacing 1s ease;
+  }
+  .about-content .eyebrow::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 22px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .9s cubic-bezier(.22,1,.36,1);
+    transition-delay: .35s;
+  }
+  .about-content.in-view .eyebrow{
+    opacity: 1;
+    letter-spacing: 0.08em;
+  }
+  .about-content.in-view .eyebrow::after{
+    transform: scaleX(1);
+  }
+
+  .about-content p{
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 1s ease .2s, transform 1s ease .2s;
+  }
+  .about-content.in-view p{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .about-content .langs{
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 1s ease .45s, transform 1s ease .45s;
+  }
+  .about-content.in-view .langs{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* ---------- Project section ---------- */
   section.project{
     padding: 90px 0 40px 0;
@@ -332,13 +383,13 @@
   }
 
   .project-head .eyebrow {
-    margin-bottom: 4px;
+    margin-bottom: 14px;
   }
 
   .project-head h2{
-    font-size: clamp(26px, 3.9vw, 48px);
+    font-size: clamp(26px, 3.9vw, 46px);
     font-weight: 800;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.02em;
     margin: 4px 0 20px 0;
     line-height: 1.0;
   }
@@ -360,7 +411,7 @@
 
   .project-stats div{
     text-align: left;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -428,8 +479,8 @@
     text-align:center;
   }
   section.contact h2{
-    font-size: clamp(26px, 4.2vw, 50px);
-    letter-spacing: -0.01em;
+    font-size: clamp(26px, 4.2vw, 46px);
+    letter-spacing: 0.02em;
     line-height: 1.0;
     margin:24px 0 34px 0;
   }
@@ -471,10 +522,99 @@
   section.contact .socials a:hover{
     color: var(--ink);
   }
+
+  /* ---------- Contact reveal animation (più veloce di About) ---------- */
+  section.contact .eyebrow {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 14px;
+    opacity: 0;
+    letter-spacing: 0.14em;
+    transition: opacity 0.8s ease, letter-spacing 0.8s ease;
+  }
+  section.contact .eyebrow::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 1px;
+    width: 22px;
+    margin-left: -11px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.7s cubic-bezier(.22,1,.36,1);
+    transition-delay: 0.15s;
+  }
+  section.contact.in-view .eyebrow {
+    opacity: 1;
+    letter-spacing: 0.08em;
+  }
+  section.contact.in-view .eyebrow::after {
+    transform: scaleX(1);
+  }
+
+  section.contact h2 {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s;
+  }
+  section.contact.in-view h2 {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section.contact a.mail {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+  }
+  section.contact.in-view a.mail {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section.contact a.phone {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s, color 0.2s ease;
+  }
+  section.contact.in-view a.phone {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section.contact .socials {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+  }
+  section.contact.in-view .socials {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .about-content .eyebrow,
+    .about-content .eyebrow::after,
+    .about-content p,
+    .about-content .langs,
+    section.contact .eyebrow,
+    section.contact .eyebrow::after,
+    section.contact h2,
+    section.contact a.mail,
+    section.contact a.phone,
+    section.contact .socials{
+      opacity: 1 !important;
+      letter-spacing: 0.08em !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
   footer{
     text-align:center;
     padding: 30px 6vw 50px 6vw;
-    font-size:10px;
+    font-size:11px;
     letter-spacing:0.16em;
     text-transform:uppercase;
     color:var(--ink-soft);
@@ -724,6 +864,36 @@
 
   updateNavBackground();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ---------- About: minimal reveal (line + fade) ----------
+  const aboutContent = document.querySelector('.about-content');
+
+  if (aboutContent) {
+    const aboutObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          aboutContent.classList.add('in-view');
+          aboutObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    aboutObserver.observe(aboutContent);
+  }
+
+  // ---------- Contact: reveal animation ----------
+  const contactSection = document.querySelector('section.contact');
+
+  if (contactSection) {
+    const contactObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          contactSection.classList.add('in-view');
+          contactObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    contactObserver.observe(contactSection);
+  }
 </script>
 
 </body>
