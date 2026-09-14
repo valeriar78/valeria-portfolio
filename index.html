@@ -7,7 +7,6 @@
 <meta name="description" content="Valeria Ribichini — Creative Director working across contemporary and fast-fashion Womenswear and Menswear. Portfolio: Doppelgänger, Musae, I AM, Miss Sixty.">
 <meta name="theme-color" content="#f6f4f1">
 
-<!-- Favicon & Canonical -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -30,474 +29,331 @@
   }
 
   *{ box-sizing:border-box; }
-
   html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-  }
-
-  /* Skip link per accessibilità tastiera */
   .skip-link {
-    position: absolute;
-    top: -100px;
-    left: 16px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 8px 16px;
-    z-index: 2400;
-    text-decoration: none;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    position: absolute; top: -100px; left: 16px;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 16px; z-index: 2400; text-decoration: none;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
     transition: top 0.2s ease;
   }
-  .skip-link:focus {
-    top: 16px;
-  }
+  .skip-link:focus { top: 16px; }
 
   .sr-only{
-    position:absolute;
-    width:1px; height:1px;
-    padding:0; margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    white-space:nowrap;
-    border:0;
+    position:absolute; width:1px; height:1px;
+    padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
 
   body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
+    margin:0; background:var(--paper); color:var(--ink);
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight:300;
-    line-height: 1.58;
-    letter-spacing: -0.01em;
+    font-weight:300; line-height: 1.58; letter-spacing: -0.01em;
     -webkit-font-smoothing:antialiased;
   }
 
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 4px;
-  }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
   h1,h2,h3 {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em;
   }
 
   .eyebrow{
     font-size:14px;
     font-family: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
-    font-style: italic;
-    letter-spacing: 0.03em;
-    color:var(--ink-soft);
+    font-style: italic; letter-spacing: 0.03em; color:var(--ink-soft);
   }
-
-  .eyebrow strong{
-    font-weight: 700;
-  }
+  .eyebrow strong{ font-weight: 700; }
 
   a{ color:inherit; }
 
-  /* ---------- Nav & Dropdown Menu ---------- */
   header.site-nav{
-    position:fixed;
-    top:0; left:0; right:0;
-    z-index:2300;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding: 22px 5vw;
-    background: transparent;
+    position:fixed; top:0; left:0; right:0; z-index:2300;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 22px 5vw; background: transparent;
     border-bottom: 1px solid transparent;
     transition: background .25s ease, border-color .25s ease;
   }
-
-  body.about-open .nav-toggle{
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  body.about-open .site-nav{
-    pointer-events: none;
-  }
-
-  body.about-open .nav-name{
-    pointer-events: auto;
-  }
-
-  header.site-nav.scrolled{
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
+  body.about-open .nav-toggle{ visibility: hidden; pointer-events: none; }
+  body.about-open .site-nav{ pointer-events: none; }
+  body.about-open .nav-name{ pointer-events: auto; }
 
   .nav-name{
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ink);
-    cursor: pointer;
-    z-index: 2301;
+    font-weight: 800; font-size: 16px; letter-spacing: 0.03em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink); cursor: pointer; z-index: 2301;
     pointer-events: auto;
     transition: opacity .2s ease, color .25s ease;
+    opacity: 0; animation: navNameFadeIn 1.6s ease forwards; animation-delay: 0.1s;
   }
   .nav-name:hover{ opacity: 0.6; }
+  @keyframes navNameFadeIn { to { opacity: 1; } }
 
   .nav-toggle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-    font-size: 28px;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--ink);
-    z-index: 2301;
+    display: flex; align-items: center; justify-content: center;
+    background: none; border: none; padding: 0; cursor: pointer;
+    width: 32px; height: 32px; font-size: 28px; font-weight: 300;
+    line-height: 1; color: var(--ink); z-index: 2301;
     transition: transform 0.35s cubic-bezier(.22,1,.36,1), color .25s ease;
   }
-  .nav-toggle.open {
-    transform: rotate(45deg);
-  }
+  .nav-toggle.open { transform: rotate(45deg); }
 
   nav.links{
-    display: flex;
-    position: fixed;
-    top: 65px;
-    right: calc(5.2vw + 2px);
-    background: transparent;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    gap: 10px;
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
+    display: flex; position: fixed; top: 65px; right: calc(5.2vw + 2px);
+    background: transparent; flex-direction: column;
+    justify-content: flex-start; align-items: flex-end; gap: 10px;
+    opacity: 0; pointer-events: none; visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    transform: translateY(-8px);
-    z-index: 2350;
+    transform: translateY(-8px); z-index: 2350;
   }
-
   nav.links.mobile-open{
-    opacity: 1;
-    pointer-events: auto;
-    visibility: visible;
-    transform: translateY(0);
+    opacity: 1; pointer-events: auto; visibility: visible; transform: translateY(0);
   }
-
   nav.links a{
-    font-size: 11.5px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ink);
-    opacity: 0.7;
+    font-size: 11.5px; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink); opacity: 0.7;
     transition: opacity 0.3s ease, color 0.2s ease;
     text-align: right;
   }
+  nav.links.mobile-open a:hover{ opacity: 1; color: var(--ink); background: none; }
+  /* ---------- NAV: diventa chiara sopra i video (on-dark) ---------- */
+  header.site-nav.on-dark .nav-name,
+  header.site-nav.on-dark .nav-toggle{
+    color: rgba(255, 255, 255, 0.85);
+  }
 
-  nav.links.mobile-open a:hover{
+  header.site-nav.on-dark nav.links a{
+    color: rgba(255, 255, 255, 0.85);
     opacity: 1;
-    color: var(--ink);
-    background: none;
   }
 
-  /* ---------- Editorial Top Page ---------- */
+  header.site-nav.on-dark nav.links a:hover{
+    color: #ffffff;
+    opacity: 1;
+  }
   .hero{
-    height: 100vh;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 5vw 8vh 5vw;
-    position: relative;
-    box-sizing: border-box;
-    background-color: #f6f4f1;
+    height: 100vh; height: 100dvh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 5vw 8vh 5vw; position: relative;
+    box-sizing: border-box; background-color: #f6f4f1;
+  }
+  .hero-bottom-content{
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: flex-end; width: 100%; gap: 4vw;
+  }
+  .hero-identity{
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 2px;
+  }
+  .hero-identity .role{
+    font-size: 12px; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--ink); margin: 0;
+  }
+  .hero-editorial-card{
+    display: flex; align-items: flex-end; gap: 28px;
+  }
+  .hero-portrait{
+    width: 140px; height: 180px; object-fit: cover;
+    display: block; flex-shrink: 0; filter: grayscale(100%);
+  }
+  .hero-bio-box{
+    display: flex; flex-direction: column; gap: 12px; flex: 1;
+  }
+  .hero-bio-box p{
+    font-size: 13px; line-height: 1.62; letter-spacing: 0.01em;
+    color: var(--ink); text-transform: uppercase; margin: 0;
+  }
+  .hero-more-link{
+    font-size: 10px; font-family: inherit; background: none;
+    border: none; padding: 0; cursor: pointer;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; color: var(--ink-soft);
+    transition: color 0.2s ease; align-self: flex-start;
+  }
+  .hero-more-link:hover{ color: var(--ink); }
+
+  @media (max-width: 900px){
+    .hero-bottom-content{ grid-template-columns: 1fr; gap: 32px; align-items: flex-start; }
+    .hero{ justify-content: center; padding-top: 120px; }
   }
 
-  .hero-bottom-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-end;
-    width: 100%;
-    gap: 4vw;
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-
-  .hero-identity {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 2px;
+  .hero-bio-box p, .hero-more-link{
+    opacity: 0; transform: translateY(-18px);
+    animation: heroFadeUp 0.85s cubic-bezier(.22,1,.36,1) forwards;
   }
-
-  .hero-identity .role {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin: 0;
+  .hero-bio-box p { animation-delay: 0.55s; }
+  .hero-more-link { animation-delay: 0.75s; }
+  .role{
+    opacity: 0; animation: navNameFadeIn 1.6s ease forwards; animation-delay: 0.1s;
   }
-
-  .hero-editorial-card {
-    display: flex;
-    align-items: flex-end;
-    gap: 28px;
+  .hero-portrait{
+    opacity: 0; animation: navNameFadeIn 1.3s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay: 0.3s;
   }
-
-  .hero-portrait {
-    width: 140px;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-    flex-shrink: 0;
-    filter: grayscale(100%);
-  }
-
-  .hero-bio-box {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-  }
-
-  .hero-bio-box p {
-    font-size: 13px;
-    line-height: 1.62;
-    letter-spacing: 0.01em;
-    color: var(--ink);
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  .hero-more-link {
-    font-size: 10px;
-    font-family: inherit;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ink-soft);
-    transition: color 0.2s ease;
-    align-self: flex-start;
-  }
-
-  .hero-more-link:hover {
-    color: var(--ink);
-  }
-
-  @media (max-width: 900px) {
-    .hero-bottom-content {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      align-items: flex-start;
-    }
-    .hero {
-      justify-content: center;
-      padding-top: 120px;
+  @media (prefers-reduced-motion: reduce){
+    .role, .hero-portrait, .hero-bio-box p, .hero-more-link, .nav-name{
+      opacity: 1; transform: none; animation: none;
     }
   }
 
-  @media (max-width: 580px) {
-    .hero-editorial-card {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .hero-portrait {
-      width: 110px;
-      height: 140px;
-    }
+  @media (max-width: 580px){
+    .hero-editorial-card{ flex-direction: column; align-items: flex-start; gap: 16px; }
+    .hero-portrait{ width: 110px; height: 140px; }
+  }
+  @media (max-width: 480px){
+    .hero-bottom-content{ display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .hero-editorial-card{ display: contents; }
+    .hero-portrait{ order: 1; }
+    .hero-identity{ order: 2; }
+    .hero-bio-box{ order: 3; }
+    .hero-identity .role{ font-size: 10px; }
   }
 
-  @media (max-width: 480px) {
-    .hero-bottom-content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .hero-editorial-card {
-      display: contents;
-    }
-    .hero-portrait {
-      order: 1;
-    }
-    .hero-identity {
-      order: 2;
-    }
-    .hero-bio-box {
-      order: 3;
-    }
-    .hero-identity .role {
-      font-size: 10px;
-    }
-  }
-
-  /* ---------- Project section ---------- */
   section.project{
-    padding: 90px 0 40px 0;
-    border-top:1px solid var(--line);
-    position: relative;
+    padding: 90px 0 40px 0; border-top:1px solid var(--line); position: relative;
   }
-  
   .project-head{
-    padding: 0 6vw;
-    max-width: 1400px;
-    margin: 0 auto 50px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4vw;
-    align-items: start;
-    transition: padding-left 0.3s ease;
+    padding: 0 6vw; max-width: 1400px; margin: 0 auto 50px auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4vw;
+    align-items: start; transition: padding-left 0.3s ease;
   }
-
-  .project-head .eyebrow {
-    margin-bottom: 14px;
-  }
-
+  .project-head .eyebrow{ margin-bottom: 14px; }
   .project-head h2{
-    font-size: clamp(20px, 2.7vw, 34px);
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    margin: 4px 0 20px 0;
-    line-height: 1.05;
+    font-size: clamp(20px, 2.7vw, 34px); font-weight: 800;
+    letter-spacing: 0.02em; margin: 4px 0 20px 0; line-height: 1.05;
   }
-
   .project-head p{
-    font-size: 14px;
-    line-height: 1.68;
-    color: var(--ink-soft);
-    margin: 0;
-    font-weight: 300;
+    font-size: 14px; line-height: 1.68; color: var(--ink-soft);
+    margin: 0; font-weight: 300;
   }
-
   .project-stats{
-    display: flex;
-    gap: 48px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    display: flex; gap: 48px; flex-wrap: wrap; margin-top: 20px;
   }
-
   .project-stats div{
-    text-align: left;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
+    text-align: left; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
   }
-
   .project-stats strong{
     display: block;
     font-family: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 15px;
-    letter-spacing: 0;
-    color: var(--ink);
-    text-transform: none;
+    font-style: italic; font-weight: 400; font-size: 15px;
+    letter-spacing: 0; color: var(--ink); text-transform: none;
     margin-top: 2px;
   }
 
   .plate{
-    max-width:1400px;
-    margin: 0 auto 40px auto;
-    padding: 0 6vw;
-    overflow:hidden;
+    max-width:1400px; margin: 0 auto 40px auto;
+    padding: 0 6vw; overflow:hidden;
     transition: padding-left 0.3s ease;
   }
   .plate img{
-    width:100%;
-    height:auto;
-    display:block;
-    opacity: 0;
-    transform: translateY(36px) scale(1.03);
+    width:100%; height:auto; display:block;
+    opacity: 0; transform: translateY(36px) scale(1.03);
     transition: opacity 1.15s cubic-bezier(.22,1,.36,1), transform 1.15s cubic-bezier(.22,1,.36,1);
   }
-  .plate.in-view img{
+  .plate.in-view img{ opacity: 1; transform: translateY(0) scale(1); }
+  @media (prefers-reduced-motion: reduce){
+    .plate img{ opacity: 1; transform: none; transition: none; }
+  }
+
+  .reveal-line{
+    opacity: 0; transform: translateY(-18px);
+    transition: opacity 1.2s cubic-bezier(.22,1,.36,1), transform 1.2s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal-line.in-view{ opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal-line{ opacity: 1; transform: none; transition: none; }
+  }
+  .plate figcaption{
+    padding: 10px 2px 30px 2px; font-size:11px;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  .plate.full-bleed{
+    max-width: none; padding: 0; overflow:hidden;
+  }
+  .plate.full-bleed figcaption{
+    padding-left: 6vw; padding-right: 6vw;
+  }
+
+    /* ---------- 4 VIDEO AFFIANCATI ---------- */
+  .video-quad{
+    display: flex;
+    width: 100%;
+    height: 56.25vw;
+    gap: 0;
+    margin: 40px 0 60px 0;
+    overflow: hidden;
+    background: #000;                /* 👈 fessure nere */
+  }
+
+  .video-quad video{
+    width: calc(100% / 4);           /* 👈 larghezza esatta */
+    height: 100%;
+    display: block;
+    flex: 0 0 calc(100% / 4);        /* 👈 flex-basis esatto */
+    object-fit: cover;
+    object-position: center;
+    background: #000;                /* 👈 sfondo nero dietro ogni video */
+    opacity: 0;
+    transform: translateY(-80px) scale(1.04);
+    transform-origin: center top;
+    transition:
+      opacity 1.2s cubic-bezier(.16,1,.3,1),
+      transform 1.6s cubic-bezier(.16,1,.3,1);
+  }
+  .video-quad.in-view video:nth-child(1){ transition-delay: 0s;    }
+  .video-quad.in-view video:nth-child(2){ transition-delay: 0.2s;  }
+  .video-quad.in-view video:nth-child(3){ transition-delay: 0.4s;  }
+  .video-quad.in-view video:nth-child(4){ transition-delay: 0.6s;  }
+
+  .video-quad.in-view video{
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 
   @media (prefers-reduced-motion: reduce){
-    .plate img{
-      opacity: 1;
-      transform: none;
-      transition: none;
+    .video-quad video{ opacity: 1; transform: none; transition: none; }
+  }
+
+  /* Mobile: 4 video affiancati come su desktop (fascia unica) */
+  @media (max-width: 720px){
+    .video-quad{
+      flex-direction: row;
+      gap: 0;
+      height: 56.25vw;
+    }
+    .video-quad video{
+      width: 25vw;
+      height: 100%;
+      flex: 0 0 25vw;
     }
   }
-  .plate figcaption{
-    padding: 10px 2px 30px 2px;
-    font-size:11px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-  }
-
-  .plate.full-bleed{
-    max-width: none;
-    padding: 0;
-    overflow:hidden;
-  }
-  .plate.full-bleed figcaption{
-    padding-left: 6vw;
-    padding-right: 6vw;
-  }
-
   /* ---------- Striscia Colori Responsive ---------- */
   .color-strip-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: var(--strip-w);
-    z-index: 50;
-    pointer-events: none;
-    overflow: hidden;
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: var(--strip-w); z-index: 50;
+    pointer-events: none; overflow: hidden;
   }
-
   .color-strip-container .color-strip {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: var(--strip-w);
-    display: flex;
-    flex-direction: column;
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: var(--strip-w); display: flex; flex-direction: column;
     clip-path: inset(0 0 100% 0);
     transition: clip-path 1.8s cubic-bezier(.22,1,.36,1);
   }
-
-  .color-strip.in-view {
-    clip-path: inset(0 0 0% 0);
-  }
-
-  .color-strip .swatch {
-    flex: 1 1 0;
-    width: 100%;
-  }
+  .color-strip.in-view { clip-path: inset(0 0 0% 0); }
+  .color-strip .swatch { flex: 1 1 0; width: 100%; }
 
   @media (prefers-reduced-motion: reduce){
     .color-strip { clip-path: inset(0 0 0% 0) !important; transition: none !important; }
   }
-
   @media (max-width: 720px){
     .project-head, .plate:not(.full-bleed) {
       padding-left: calc(var(--strip-w) + 12px);
@@ -509,244 +365,114 @@
   }
 
   .note{
-    max-width:640px;
-    margin: 10px auto 60px auto;
-    padding: 0 6vw;
-    font-size:13px;
-    line-height:1.75;
-    color:var(--ink-soft);
-    text-align:center;
+    max-width:640px; margin: 10px auto 60px auto;
+    padding: 0 6vw; font-size:13px; line-height:1.75;
+    color:var(--ink-soft); text-align:center;
   }
 
-  /* ---------- Closing ---------- */
   section.closing{
-    min-height: 30vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 80px 6vw 40px;
-    text-align:center;
+    min-height: 30vh; display: flex; flex-direction: column;
+    justify-content: flex-end; align-items: center;
+    padding: 80px 6vw 40px; text-align:center;
     background-color: var(--paper);
   }
-
   section.closing .closing-copyright{
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0;
-    opacity: 0;
-    transition: opacity 0.9s ease 0.2s;
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-soft);
+    margin: 0; opacity: 0; transition: opacity 0.9s ease 0.2s;
   }
-  section.closing.in-view .closing-copyright{
-    opacity: 1;
-  }
-
+  section.closing.in-view .closing-copyright{ opacity: 1; }
   @media (prefers-reduced-motion: reduce){
     section.closing .closing-copyright{
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
+      opacity: 1 !important; transform: none !important; transition: none !important;
     }
   }
 
   @media (max-width: 900px){
-    .project-head{
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
+    .project-head{ grid-template-columns: 1fr; gap: 24px; }
   }
-
-  /* =========================================================
-     ABOUT OVERLAY
-     ========================================================= */
 
   .about-overlay{
-    position: fixed;
-    inset: 0;
-    z-index: 2200;
-    background-color: #f6f4f1;
-    overflow-y: auto;
+    position: fixed; inset: 0; z-index: 2200;
+    background-color: #f6f4f1; overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(16px);
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(.22,1,.36,1), visibility 0.8s ease;
   }
-
-  .about-overlay.open{
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  body.about-open{
-    overflow: hidden;
-  }
+  .about-overlay.open{ opacity: 1; visibility: visible; }
+  body.about-open{ overflow: hidden; }
 
   .about-overlay-close{
-    position: fixed;
-    top: 22px;
-    right: 5vw;
-    z-index: 2300;
-    background: none;
-    border: none;
-    padding: 0;
-    width: 32px;
-    height: 32px;
-    font-size: 28px;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--ink);
-    cursor: pointer;
-    transform: rotate(45deg);
-    transition: opacity 0.2s ease;
+    position: fixed; top: 22px; right: 5vw; z-index: 2300;
+    background: none; border: none; padding: 0;
+    width: 32px; height: 32px; font-size: 28px; font-weight: 300;
+    line-height: 1; color: var(--ink); cursor: pointer;
+    transform: rotate(45deg); transition: opacity 0.2s ease;
   }
-
   .about-overlay-close:hover{ opacity: 0.6; }
 
+  .about-line{
+    opacity: 0; transform: translateY(-18px);
+    transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+  }
+  .about-overlay.open .about-line{ opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .about-line{ opacity: 1; transform: none; transition: none; }
+  }
+
   .about-wrap{
-    max-width: 1600px;
-    margin: 0 auto;
+    max-width: 1600px; margin: 0 auto;
     padding: 90px 6vw 60px 6vw;
   }
-
-  .about-block p, 
-  .career-entry p, 
-  .skills-list li {
-    font-size: 13px;
-    line-height: 1.62;
-    letter-spacing: 0.01em;  
-    font-weight: 300;
+  .about-block p, .career-entry p, .skills-list li{
+    font-size: 13px; line-height: 1.62; letter-spacing: 0.01em; font-weight: 300;
   }
-
-  .about-block p {
-    color: var(--ink);
-    margin: 0 0 12px 0;
+  .about-block p{ color: var(--ink); margin: 0 0 12px 0; }
+  .about-block p:last-child{ margin-bottom: 0; }
+  .about-block strong, .career-entry strong{ font-weight: 600; color: var(--ink); }
+  .about-block .label, .about-career .label{
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 14px;
   }
-  .about-block p:last-child {
-    margin-bottom: 0;
-  }
-
-  .about-block strong,
-  .career-entry strong {
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  .about-block .label, 
-  .about-career .label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
   .about-columns{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4.5vw;
-    margin-bottom: 60px;
-    align-items: start;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4.5vw; margin-bottom: 60px; align-items: start;
   }
-
-  .about-columns.career-skills-grid {
-    grid-template-columns: 1.65fr 1fr;
-    gap: 4.5vw;
-    margin-bottom: 24px;     
+  .about-columns.career-skills-grid{
+    grid-template-columns: 1.65fr 1fr; gap: 4.5vw; margin-bottom: 24px;
   }
-
-  .about-career{
-    margin: 0;
-  }
-
-  .career-entry{
-    margin-bottom: 24px;
-  }
-  .career-entry:last-child {
-    margin-bottom: 0;
-  }
-
+  .about-career{ margin: 0; }
+  .career-entry{ margin-bottom: 24px; }
+  .career-entry:last-child{ margin-bottom: 0; }
   .career-entry .role-line{
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.04em;  
-    text-transform: uppercase;
-    margin: 0 0 4px 0;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; margin: 0 0 4px 0;
   }
-
-  .career-entry .role-line span{
-    font-weight: 400;
-    color: var(--ink-soft);
+  .career-entry .role-line span{ font-weight: 400; color: var(--ink-soft); }
+  .career-entry p{ color: var(--ink-soft); margin: 0 0 6px 0; }
+  .career-entry p:last-child{ margin-bottom: 0; }
+  .skills-list{ list-style: none; padding: 0; margin: 0; }
+  .skills-list li{
+    color: var(--ink); margin-bottom: 8px; padding-left: 16px; position: relative;
   }
-
-  .career-entry p {
-    color: var(--ink-soft);
-    margin: 0 0 6px 0;
+  .skills-list li::before{
+    content: '—'; position: absolute; left: 0; color: var(--ink-soft);
   }
-
-  .career-entry p:last-child {
-    margin-bottom: 0;
-  }
-
-  .skills-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .skills-list li {
-    color: var(--ink);
-    margin-bottom: 8px;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .skills-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--ink-soft);
-  }
-
-  .about-sidebar-right {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-  }
-
+  .about-sidebar-right{ display: flex; flex-direction: column; gap: 36px; }
   .about-footer-row{
-    margin-top: 50px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
+    margin-top: 50px; padding-top: 24px; border-top: 1px solid var(--line);
   }
-
-  .about-contact-links{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 18px;
-  }
-
+  .about-contact-links{ display: flex; flex-wrap: wrap; gap: 8px 18px; }
   .about-contact-links a{
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ink);
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 2px;
-    transition: opacity .2s ease;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink); border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px; transition: opacity .2s ease;
   }
-
   .about-contact-links a:hover{ opacity: 0.6; }
-
   @media (max-width: 900px){
-    .about-columns, .about-columns.career-skills-grid{ 
-      grid-template-columns: 1fr; 
-      gap: 32px; 
+    .about-columns, .about-columns.career-skills-grid{
+      grid-template-columns: 1fr; gap: 32px;
     }
     .about-career{ margin-right: 0; }
   }
@@ -817,11 +543,29 @@
       </div>
     </div>
     <div>
-      <p>Creative direction and team management for the Womenswear line — spanning trend forecasting and product development, brand repositioning and omnichannel campaigns, lookbooks and accessories, through to flagship store design and visual merchandising.</p>
+      <p class="reveal-line">Creative direction and team management for the Womenswear line —</p>
+      <p class="reveal-line">spanning trend forecasting and product development, brand repositioning and omnichannel campaigns, lookbooks and accessories, through to flagship store design and visual merchandising.</p>
     </div>
   </div>
 
   <figure class="plate" id="firstPlateDoppel"><img src="img/doppelganger-00.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 mood board" decoding="async"><figcaption>S/S 2025 — Mood board &amp; technical design</figcaption></figure>
+
+    <!-- 4 VIDEO AFFIANCATI — Doppelgänger Woman -->
+  <div class="video-quad" id="videoQuadDoppel">
+    <video autoplay muted loop playsinline preload="auto" poster="img/posters/poster-01.jpg">
+      <source src="video/video-01.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop playsinline preload="auto" poster="img/posters/poster-02.jpg">
+      <source src="video/video-02.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop playsinline preload="auto" poster="img/posters/poster-03.jpg">
+      <source src="video/video-03.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop playsinline preload="auto" poster="img/posters/poster-04.jpg">
+      <source src="video/video-04.mp4" type="video/mp4">
+    </video>
+  </div>
+
   <figure class="plate"><img src="img/doppelganger-01.jpg" width="1800" height="1125" alt="Doppelgänger Womenswear S/S 2025 campaign" loading="lazy" decoding="async"><figcaption>S/S 2025 — Campaign</figcaption></figure>
   <figure class="plate full-bleed"><img src="img/doppelganger-02.jpg" width="1800" height="1125" alt="Doppelgänger Womenswear S/S 2025 editorial" loading="lazy" decoding="async"></figure>
   <figure class="plate"><img src="img/doppelganger-03.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 lookbook" loading="lazy" decoding="async"><figcaption>S/S 2025 — Lookbook</figcaption></figure>
@@ -830,7 +574,6 @@
   <figure class="plate"><img src="img/doppelganger-06.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 construction details" loading="lazy" decoding="async"><figcaption>S/S 2025 — Construction &amp; details</figcaption></figure>
   <figure class="plate"><img src="img/doppelganger-07.jpg" width="1800" height="1125" alt="Doppelgänger S/S 2025 accessories" loading="lazy" decoding="async"><figcaption>S/S 2025 — Accessories</figcaption></figure>
 </section>
-
 <section class="project" id="musae">
   <div class="color-strip-container">
     <div class="color-strip" id="colorStripMusae">
@@ -874,7 +617,8 @@
       </div>
     </div>
     <div>
-      <p>Founded and led two mid-to-high womenswear collections end-to-end, overseeing concept, sourcing and product development alongside commercial management, wholesale distribution and brand image.</p>
+      <p class="reveal-line">Founded and led two mid-to-high womenswear collections end-to-end,</p>
+      <p class="reveal-line">overseeing concept, sourcing and product development alongside commercial management, wholesale distribution and brand image.</p>
     </div>
   </div>
 
@@ -921,7 +665,8 @@
       </div>
     </div>
     <div>
-      <p>Directed creative vision, brand image and style office team management for fast-fashion collection development, covering trend forecasting, denim advertising, seasonal campaigns and visual merchandising.</p>
+      <p class="reveal-line">Directed creative vision, brand image and style office team management for fast-fashion collection development,</p>
+      <p class="reveal-line">covering trend forecasting, denim advertising, seasonal campaigns and visual merchandising.</p>
     </div>
   </div>
 
@@ -943,7 +688,8 @@
       </div>
     </div>
     <div>
-      <p>Rose from Junior Designer to Creative Director over twelve years within Sixty Spa's Miss Sixty line, directing denim and main collections while managing licensing and special projects — including a New York Fashion Week capsule and collaborations with Renault, Harrods and Bread&amp;Butter.</p>
+      <p class="reveal-line">Rose from Junior Designer to Creative Director over twelve years within Sixty Spa's Miss Sixty line, directing denim and main collections while managing licensing and special projects —</p>
+      <p class="reveal-line">including a New York Fashion Week capsule and collaborations with Renault, Harrods and Bread&amp;Butter.</p>
     </div>
   </div>
 
@@ -971,51 +717,49 @@
 
   <div class="about-wrap">
 
-    <!-- ABOUT & APPROACH -->
     <div class="about-columns">
       <div class="about-block">
-        <div class="label">About</div>
-        <p>Creative Director &amp; Design Leader with <strong>25+ years</strong> shaping international womenswear and menswear brands — leading teams of up to 10 people, repositioning brand identity across a network of <strong>350+ points of sale</strong>, and driving double-digit e-commerce growth.</p>
-        <p>My path has spanned Miss Sixty, Tally Weijl and Doppelgänger, scaling retail turnover to <strong>€400M</strong>, launching NYFW capsules, and building global partnerships with Renault and Harrods.</p>
+        <div class="label about-line">About</div>
+        <p class="about-line">Creative Director &amp; Design Leader with <strong>25+ years</strong> shaping international womenswear and menswear brands — leading teams of up to 10 people, repositioning brand identity across a network of <strong>350+ points of sale</strong>, and driving double-digit e-commerce growth.</p>
+        <p class="about-line">My path has spanned Miss Sixty, Tally Weijl and Doppelgänger, scaling retail turnover to <strong>€400M</strong>, launching NYFW capsules, and building global partnerships with Renault and Harrods.</p>
       </div>
       <div class="about-block">
-        <div class="label">Approach</div>
-        <p>I combine creative vision, sustainable sourcing and commercial leadership into a single, coherent direction — connecting product, brand and retail from mood board to store shelf. Along the way, I oversee every phase personally, from international textile scouting to final retail execution.</p>
+        <div class="label about-line">Approach</div>
+        <p class="about-line">I combine creative vision, sustainable sourcing and commercial leadership into a single, coherent direction — connecting product, brand and retail from mood board to store shelf. Along the way, I oversee every phase personally, from international textile scouting to final retail execution.</p>
       </div>
     </div>
 
-    <!-- CAREER E SKILLS -->
     <div class="about-columns career-skills-grid">
       <div class="about-career">
-        <div class="label">Career</div>
+        <div class="label about-line">Career</div>
 
-        <div class="career-entry">
+        <div class="career-entry about-line">
           <div class="role-line">Doppelgänger — Creative Director <span>2024 — Present, Rome</span></div>
           <p style="color: var(--ink); font-weight: 400; font-family: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif; text-transform: none; font-size: 14px;">Progression: Creative Director — Womenswear (2024 — 2025) · Creative Director — Menswear (2025 — Present)</p>
           <p>Lead Womenswear and Menswear creative direction for 4 designers and 1 graphic across 122 points of sale. Delivered <strong>+9% L4L growth</strong> and <strong>~€7.9M in e-commerce sales</strong>, directing the Rome flagship repositioning. Managed material R&amp;D and sustainable sourcing across Première Vision and Milano Unica, achieving <strong>59% sell-through</strong>.</p>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry about-line">
           <div class="role-line">I AM — Creative Director <span>2020 — 2023, Rome</span></div>
           <p>Led creative direction for 5 designers and 3 graphics across 45 Italian points of sale, spanning seasonal collections, campaigns, and visual merchandising. Partnered with digital and e-commerce teams to align seasonal launches with online editorial storytelling and lookbooks.</p>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry about-line">
           <div class="role-line">Independent Consulting — Creative &amp; Art Director <span>2016 — 2020, Rome</span></div>
           <p>Directed Nero Giardini Menswear and Womenswear collections (12 seasons), designed MotoGP 2016 paddock team uniforms, directed Nuna Lie art direction, and led the Pianura Studio womenswear relaunch from concept through go-to-market.</p>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry about-line">
           <div class="role-line">Musae — Founder / Creative Director <span>2015 — 2016, Paris</span></div>
           <p>Founded and led an independent womenswear label, directing two mid-to-high collections a year — from sourcing and product development to wholesale distribution and brand image. Integrated circular design by sourcing luxury deadstock fabrics from premier Italian mills for 100% Made in Italy production.</p>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry about-line">
           <div class="role-line">Tally Weijl — Head of Design <span>2013 — 2015, Paris</span></div>
           <p>Directed Denim, Outerwear, and Wovens for a retail network scaling from <strong>700 to 800+ points</strong> across 34–37 countries, supporting the 2015 e-commerce launch. Supervised design research while scaling retail turnover to €380M–€400M.</p>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry about-line">
           <div class="role-line" style="margin-bottom: 2px;">Sixty Spa — Miss Sixty <span>2001 — 2013, Rome</span></div>
           <p style="color: var(--ink); font-weight: 400; font-family: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif; text-transform: none; font-size: 14px; margin-top: 0;"><span style="font-size: 15px; font-weight: 700;">Creative Director (2011–2013)</span><br>Progression: Junior Designer (2001–2002) · Senior Designer (2002–2004) · Design Manager (2004–2011)</p>
           <p>Directed Main, Denim, and Luxury collections for 350+ worldwide points of sale over 12 years — including the Renault Twingo special edition, NYFW capsules, and partnerships with Harrods and Bread&amp;Butter. Managed cross-functional teams and licenses while supporting international flagship expansions across the US, Latin America, and Asia.</p>
@@ -1023,32 +767,30 @@
       </div>
 
       <div class="about-sidebar-right">
-        <!-- SKILLS -->
         <div class="about-block">
-          <div class="label">Skills</div>
+          <div class="label about-line">Skills</div>
           <ul class="skills-list">
-            <li>Team Leadership &amp; People Management</li>
-            <li>P&amp;L / Commercial Strategy</li>
-            <li>Collection Development &amp; Trend Forecasting</li>
-            <li>Sourcing &amp; Production Coordination</li>
-            <li>Sustainable Sourcing &amp; Circular Fashion</li>
-            <li>Omnichannel Brand &amp; Content Strategy</li>
-            <li>Social-First Art Direction &amp; Digital Storytelling</li>
-            <li>E-Commerce Visual Merchandising</li>
-            <li>Footwear &amp; Accessories Development</li>
-            <li>Licensing Coordination</li>
+            <li class="about-line">Team Leadership &amp; People Management</li>
+            <li class="about-line">P&amp;L / Commercial Strategy</li>
+            <li class="about-line">Collection Development &amp; Trend Forecasting</li>
+            <li class="about-line">Sourcing &amp; Production Coordination</li>
+            <li class="about-line">Sustainable Sourcing &amp; Circular Fashion</li>
+            <li class="about-line">Omnichannel Brand &amp; Content Strategy</li>
+            <li class="about-line">Social-First Art Direction &amp; Digital Storytelling</li>
+            <li class="about-line">E-Commerce Visual Merchandising</li>
+            <li class="about-line">Footwear &amp; Accessories Development</li>
+            <li class="about-line">Licensing Coordination</li>
           </ul>
         </div>
 
-        <!-- EDUCATION & LANGUAGES -->
         <div class="about-block">
-          <div class="label">Education &amp; Languages</div>
-          <p style="margin-bottom: 12px;">
+          <div class="label about-line">Education &amp; Languages</div>
+          <p class="about-line" style="margin-bottom: 12px;">
             <strong>Haute Couture Diploma</strong><br>
             Koefia Academy of High Fashion and Costume, Rome<br>
             <span style="color: var(--ink-soft); text-transform: none; display: block; margin-top: 4px;">Pattern Making, Fashion Design, High Fashion Tailoring.</span>
           </p>
-          <p style="margin: 0;">
+          <p class="about-line" style="margin: 0;">
             <strong>Languages</strong><br>
             <span style="color: var(--ink-soft);">Italian (Native) · English (Fluent) · French (Fluent)</span>
           </p>
@@ -1056,13 +798,12 @@
       </div>
     </div>
 
-    <!-- FOOTER LINKS -->
     <div class="about-footer-row">
       <div class="about-contact-links">
-        <a href="mailto:info@valeriaribichini.com">Email</a>
-        <a href="tel:+393479542900">Phone</a>
-        <a href="https://it.linkedin.com/in/valeria-ribichini-02779122" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://www.instagram.com/valeriaribichini/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="about-line" href="mailto:info@valeriaribichini.com">Email</a>
+        <a class="about-line" href="tel:+393479542900">Phone</a>
+        <a class="about-line" href="https://it.linkedin.com/in/valeria-ribichini-02779122" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="about-line" href="https://www.instagram.com/valeriaribichini/" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
 
@@ -1091,21 +832,15 @@
 
   navLinks.addEventListener('click', (e) => {
     const link = e.target.closest('a');
-    if (link) {
-      closeMenu();
-    }
+    if (link) closeMenu();
   });
 
   navLinks.addEventListener('mouseleave', () => {
-    if (navLinks.classList.contains('mobile-open')) {
-      closeMenu();
-    }
+    if (navLinks.classList.contains('mobile-open')) closeMenu();
   });
 
   siteNav.addEventListener('mouseleave', () => {
-    if (navLinks.classList.contains('mobile-open')) {
-      closeMenu();
-    }
+    if (navLinks.classList.contains('mobile-open')) closeMenu();
   });
 
   document.getElementById('navLogo').addEventListener('click', (e) => {
@@ -1134,16 +869,18 @@
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
+      e.preventDefault(); last.focus();
     } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
+      e.preventDefault(); first.focus();
     }
   }
 
   function openAboutOverlay() {
     lastFocusedEl = document.activeElement;
+    const lines = aboutOverlay.querySelectorAll('.about-line');
+    lines.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i * 0.055, 1.3) + 's';
+    });
     aboutOverlay.classList.add('open');
     document.body.classList.add('about-open');
     if (main) main.setAttribute('aria-hidden', 'true');
@@ -1183,12 +920,21 @@
       navToggle.focus();
     }
   });
-
+  // Nav: diventa chiara quando passa sopra i video
   const SCROLL_THRESHOLD = 60;
   let scrollTicking = false;
+  const videoQuadSection = document.getElementById('videoQuadDoppel');
 
   function updateNavBackground() {
     siteNav.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+
+    if (videoQuadSection) {
+      const rect = videoQuadSection.getBoundingClientRect();
+      const headerHeight = siteNav.offsetHeight || 80;
+      const overDarkVideo = rect.top <= headerHeight && rect.bottom >= 0;
+      siteNav.classList.toggle('on-dark', overDarkVideo);
+    }
+
     scrollTicking = false;
   }
 
@@ -1211,8 +957,6 @@
       { plateId: 'firstPlateIam', stripId: 'colorStripIam' }
     ];
 
-    // La prima striscia (Doppelgänger) è il riferimento: tutte le altre
-    // avranno la sua stessa lunghezza.
     const referencePlate = document.getElementById(stripsConfig[0].plateId);
     const referenceHeight = referencePlate
       ? referencePlate.offsetTop + referencePlate.offsetHeight
@@ -1221,7 +965,6 @@
     stripsConfig.forEach(conf => {
       const plate = document.getElementById(conf.plateId);
       const strip = document.getElementById(conf.stripId);
-
       if (plate && strip) {
         if (conf.startAtPlate) {
           strip.style.top = plate.offsetTop + 'px';
@@ -1241,9 +984,7 @@
       if (entry.isIntersecting) {
         const stripId = entry.target.dataset.stripTarget;
         const strip = document.getElementById(stripId);
-        if (strip) {
-          strip.classList.add('in-view');
-        }
+        if (strip) strip.classList.add('in-view');
         stripObserver.unobserve(entry.target);
       }
     });
@@ -1290,6 +1031,86 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
     plates.forEach((plate) => plateObserver.observe(plate));
+  }
+
+  const projectHeads = document.querySelectorAll('.project-head');
+
+  if (projectHeads.length) {
+    const projectHeadObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const lines = entry.target.querySelectorAll('.reveal-line');
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              lines.forEach((el, i) => {
+                el.style.transitionDelay = Math.min(i * 0.18, 1.3) + 's';
+                el.classList.add('in-view');
+              });
+            });
+          });
+          projectHeadObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35, rootMargin: '0px 0px -120px 0px' });
+
+    requestAnimationFrame(() => {
+      projectHeads.forEach((head) => projectHeadObserver.observe(head));
+    });
+  }
+
+  // 4 video affiancati — animazione a cascata al primo ingresso in viewport
+  const videoQuad = document.getElementById('videoQuadDoppel');
+
+  if (videoQuad) {
+    const videoQuadObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          videoQuad.classList.add('in-view');
+          videoQuadObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    videoQuadObserver.observe(videoQuad);
+  }
+
+  // Adattamento altezza contenitore .video-quad in base all'aspect ratio
+  // del video PIÙ VERTICALE (così nessun video viene tagliato troppo)
+  const videoQuadPage = document.getElementById('videoQuadDoppel');
+  const videoQuadVideos = videoQuadPage
+    ? videoQuadPage.querySelectorAll('video')
+    : [];
+
+   function resizeVideoQuad() {
+    // Altezza gestita dal CSS (56.25vw come video Uomo) — JS disattivato
+    return;
+  }
+
+  if (videoQuadVideos.length) {
+    // Aspetta che tutti i video abbiano metadata (per conoscere i loro ratio)
+    let loadedCount = 0;
+    const totalVideos = videoQuadVideos.length;
+
+    videoQuadVideos.forEach(v => {
+      v.addEventListener('loadedmetadata', () => {
+        loadedCount++;
+        if (loadedCount === totalVideos) {
+          resizeVideoQuad();
+        }
+      });
+      // Se già caricato
+      if (v.readyState >= 1) {
+        loadedCount++;
+      }
+    });
+
+    // Se erano già tutti caricati
+    if (loadedCount === totalVideos) {
+      resizeVideoQuad();
+    }
+
+    window.addEventListener('resize', resizeVideoQuad);
+    window.addEventListener('load', resizeVideoQuad);
   }
 </script>
 
