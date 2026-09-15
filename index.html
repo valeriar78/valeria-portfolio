@@ -32,10 +32,10 @@
 
     --ease-editorial: cubic-bezier(.22,1,.36,1);
     --dur-micro: 0.25s;
-    --dur-short: 0.9s;
-    --dur-medium: 1.15s;
-    --dur-long: 1.6s;
-    --stagger: 0.12s;
+    --dur-short: 1.1s;
+    --dur-medium: 1.5s;
+    --dur-long: 1.9s;
+    --stagger: 0.08s;
   }
 
 /* ---------- Altezza strisce colori — valori responsive ---------- */
@@ -946,8 +946,8 @@
   function openAboutOverlay() {
     lastFocusedEl = document.activeElement;
     const lines = aboutOverlay.querySelectorAll('.about-line');
-    lines.forEach((el, i) => {
-      el.style.transitionDelay = Math.min(i * STAGGER, 1.3) + 's';
+      lines.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i * STAGGER, 0.7) + 's';
     });
     aboutOverlay.classList.add('open');
     document.body.classList.add('about-open');
@@ -1099,8 +1099,8 @@
         if (entry.isIntersecting) {
           const lines = entry.target.querySelectorAll('.reveal-line');
           requestAnimationFrame(() => {
-            lines.forEach((el, i) => {
-              el.style.transitionDelay = Math.min(i * STAGGER, 1.3) + 's';
+             lines.forEach((el, i) => {
+              el.style.transitionDelay = Math.min(i * STAGGER, 0.7) + 's';
               el.classList.add('in-view');
             });
           });
