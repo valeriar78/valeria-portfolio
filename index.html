@@ -22,12 +22,28 @@
 
 <style>
 
-  :root{
+    :root{
     --paper: #ffffff;
     --ink: #000000;
     --ink-soft: #4d4d4d;
     --line: #e5e5e5;
     --strip-w: clamp(10px, 4vw, 48px);
+    --strip-h: 1100px;
+
+    --ease-editorial: cubic-bezier(.22,1,.36,1);
+    --dur-micro: 0.25s;
+    --dur-short: 0.9s;
+    --dur-medium: 1.15s;
+    --dur-long: 1.6s;
+    --stagger: 0.12s;
+  }
+
+/* ---------- Altezza strisce colori — valori responsive ---------- */
+  @media (max-width: 900px){
+    :root { --strip-h: 800px; }
+  }
+  @media (max-width: 540px){
+    :root { --strip-h: 600px; }
   }
 
   *{ box-sizing:border-box; }
@@ -39,7 +55,7 @@
     background: var(--ink); color: var(--paper);
     padding: 8px 16px; z-index: 2400; text-decoration: none;
     font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
-    transition: top 0.2s ease;
+    transition: top var(--dur-micro) ease;
   }
   .skip-link:focus { top: 16px; }
 
@@ -77,7 +93,7 @@
     display:flex; justify-content:space-between; align-items:center;
     padding: 22px 5vw; background: transparent;
     border-bottom: 1px solid transparent;
-    transition: background .25s ease, border-color .25s ease;
+    transition: background var(--dur-micro) ease, border-color var(--dur-micro) ease;
   }
   body.about-open .nav-toggle{ visibility: hidden; pointer-events: none; }
   body.about-open .site-nav{ pointer-events: none; }
@@ -89,8 +105,8 @@
     text-transform: uppercase; text-decoration: none;
     color: var(--ink); cursor: pointer; z-index: 2301;
     pointer-events: auto;
-    transition: opacity .2s ease, color .25s ease;
-    opacity: 0; animation: navNameFadeIn 1.6s ease forwards; animation-delay: 0.1s;
+    transition: opacity var(--dur-micro) ease, color var(--dur-micro) ease;
+    opacity: 0; animation: navNameFadeIn var(--dur-long) ease forwards; animation-delay: 0.1s;
   }
   .nav-name:hover{ opacity: 0.6; }
   @keyframes navNameFadeIn { to { opacity: 1; } }
@@ -100,7 +116,7 @@
     background: none; border: none; padding: 0; cursor: pointer;
     width: 32px; height: 32px; font-size: 28px; font-weight: 300;
     line-height: 1; color: var(--ink); z-index: 2301;
-    transition: transform 0.35s cubic-bezier(.22,1,.36,1), color .25s ease;
+    transition: transform var(--dur-micro) var(--ease-editorial), color var(--dur-micro) ease;
   }
   .nav-toggle.open { transform: rotate(45deg); }
 
@@ -119,25 +135,24 @@
     font-size: 11.5px; font-weight: 400; letter-spacing: 0.1em;
     text-transform: uppercase; text-decoration: none;
     color: var(--ink); opacity: 0.7;
-    transition: opacity 0.3s ease, color 0.2s ease;
+    transition: opacity 0.3s ease, color var(--dur-micro) ease;
     text-align: right;
   }
   nav.links.mobile-open a:hover{ opacity: 1; color: var(--ink); background: none; }
-  /* ---------- NAV: diventa chiara sopra i video (on-dark) ---------- */
+
   header.site-nav.on-dark .nav-name,
   header.site-nav.on-dark .nav-toggle{
     color: rgba(255, 255, 255, 0.85);
   }
-
   header.site-nav.on-dark nav.links a{
     color: rgba(255, 255, 255, 0.85);
     opacity: 1;
   }
-
   header.site-nav.on-dark nav.links a:hover{
     color: #ffffff;
     opacity: 1;
   }
+
   .hero{
     height: 100vh; height: 100dvh;
     display: flex; flex-direction: column; justify-content: flex-end;
@@ -174,7 +189,7 @@
     border: none; padding: 0; cursor: pointer;
     letter-spacing: 0.15em; text-transform: uppercase;
     text-decoration: none; color: var(--ink-soft);
-    transition: color 0.2s ease; align-self: flex-start;
+    transition: color var(--dur-micro) ease; align-self: flex-start;
   }
   .hero-more-link:hover{ color: var(--ink); }
 
@@ -189,15 +204,15 @@
   }
   .hero-bio-box p, .hero-more-link{
     opacity: 0; transform: translateY(-18px);
-    animation: heroFadeUp 0.85s cubic-bezier(.22,1,.36,1) forwards;
+    animation: heroFadeUp var(--dur-short) var(--ease-editorial) forwards;
   }
   .hero-bio-box p { animation-delay: 0.55s; }
   .hero-more-link { animation-delay: 0.75s; }
   .role{
-    opacity: 0; animation: navNameFadeIn 1.6s ease forwards; animation-delay: 0.1s;
+    opacity: 0; animation: navNameFadeIn var(--dur-long) ease forwards; animation-delay: 0.1s;
   }
   .hero-portrait{
-    opacity: 0; animation: navNameFadeIn 1.3s cubic-bezier(.22,1,.36,1) forwards;
+    opacity: 0; animation: navNameFadeIn var(--dur-medium) var(--ease-editorial) forwards;
     animation-delay: 0.3s;
   }
   @media (prefers-reduced-motion: reduce){
@@ -259,7 +274,9 @@
   .plate img{
     width:100%; height:auto; display:block;
     opacity: 0; transform: translateY(36px) scale(1.03);
-    transition: opacity 1.15s cubic-bezier(.22,1,.36,1), transform 1.15s cubic-bezier(.22,1,.36,1);
+    will-change: transform, opacity;
+    transition: opacity var(--dur-medium) var(--ease-editorial),
+                transform var(--dur-medium) var(--ease-editorial);
   }
   .plate.in-view img{ opacity: 1; transform: translateY(0) scale(1); }
   @media (prefers-reduced-motion: reduce){
@@ -268,7 +285,9 @@
 
   .reveal-line{
     opacity: 0; transform: translateY(-18px);
-    transition: opacity 1.2s cubic-bezier(.22,1,.36,1), transform 1.2s cubic-bezier(.22,1,.36,1);
+    will-change: transform, opacity;
+    transition: opacity var(--dur-medium) var(--ease-editorial),
+                transform var(--dur-medium) var(--ease-editorial);
   }
   .reveal-line.in-view{ opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce){
@@ -285,7 +304,7 @@
     padding-left: 6vw; padding-right: 6vw;
   }
 
-    /* ---------- 4 VIDEO AFFIANCATI ---------- */
+  /* ---------- 4 VIDEO AFFIANCATI ---------- */
   .video-quad{
     display: flex;
     width: 100%;
@@ -293,28 +312,29 @@
     gap: 0;
     margin: 40px 0 60px 0;
     overflow: hidden;
-    background: #000;                /* 👈 fessure nere */
+    background: #000;
   }
 
   .video-quad video{
-    width: calc(100% / 4);           /* 👈 larghezza esatta */
+    width: calc(100% / 4);
     height: 100%;
     display: block;
-    flex: 0 0 calc(100% / 4);        /* 👈 flex-basis esatto */
+    flex: 0 0 calc(100% / 4);
     object-fit: cover;
     object-position: center;
-    background: #000;                /* 👈 sfondo nero dietro ogni video */
+    background: #000;
     opacity: 0;
     transform: translateY(-80px) scale(1.04);
     transform-origin: center top;
+    will-change: transform, opacity;
     transition:
-      opacity 1.2s cubic-bezier(.22,1,.36,1),
-      transform 1.6s cubic-bezier(.22,1,.36,1);
+      opacity var(--dur-medium) var(--ease-editorial),
+      transform var(--dur-long) var(--ease-editorial);
   }
-  .video-quad.in-view video:nth-child(1){ transition-delay: 0s;    }
-  .video-quad.in-view video:nth-child(2){ transition-delay: 0.2s;  }
-  .video-quad.in-view video:nth-child(3){ transition-delay: 0.4s;  }
-  .video-quad.in-view video:nth-child(4){ transition-delay: 0.6s;  }
+  .video-quad.in-view video:nth-child(1){ transition-delay: 0s; }
+  .video-quad.in-view video:nth-child(2){ transition-delay: calc(var(--stagger) * 1); }
+  .video-quad.in-view video:nth-child(3){ transition-delay: calc(var(--stagger) * 2); }
+  .video-quad.in-view video:nth-child(4){ transition-delay: calc(var(--stagger) * 3); }
 
   .video-quad.in-view video{
     opacity: 1;
@@ -325,7 +345,6 @@
     .video-quad video{ opacity: 1; transform: none; transition: none; }
   }
 
-  /* Mobile: 4 video affiancati come su desktop (fascia unica) */
   @media (max-width: 720px){
     .video-quad{
       flex-direction: row;
@@ -338,6 +357,7 @@
       flex: 0 0 25vw;
     }
   }
+
   /* ---------- Striscia Colori Responsive ---------- */
   .color-strip-container {
     position: absolute; top: 0; left: 0; bottom: 0;
@@ -345,16 +365,30 @@
     pointer-events: none; overflow: hidden;
   }
   .color-strip-container .color-strip {
-    position: absolute; left: 0; top: 0; bottom: 0;
+    position: absolute; left: 0; top: 0;
+    height: var(--strip-h);
     width: var(--strip-w); display: flex; flex-direction: column;
     clip-path: inset(0 0 100% 0);
-    transition: clip-path 1.8s cubic-bezier(.22,1,.36,1);
+    will-change: clip-path;
+    transition: clip-path var(--dur-long) var(--ease-editorial);
+  }
+  #colorStripMusaeFall {
+    top: var(--musae-fall-top, 0px);
   }
   .color-strip.in-view { clip-path: inset(0 0 0% 0); }
   .color-strip .swatch { flex: 1 1 0; width: 100%; }
 
   @media (prefers-reduced-motion: reduce){
     .color-strip { clip-path: inset(0 0 0% 0) !important; transition: none !important; }
+  }
+  @media (max-width: 900px){
+    .project-head, .plate:not(.full-bleed) {
+      padding-left: calc(var(--strip-w) + 12px);
+    }
+    .plate.full-bleed figcaption {
+      padding-left: calc(var(--strip-w) + 12px);
+      padding-right: 6vw;
+    }
   }
   @media (max-width: 720px){
     .project-head, .plate:not(.full-bleed) {
@@ -366,12 +400,6 @@
     }
   }
 
-  .note{
-    max-width:640px; margin: 10px auto 60px auto;
-    padding: 0 6vw; font-size:13px; line-height:1.75;
-    color:var(--ink-soft); text-align:center;
-  }
-
   section.closing{
     min-height: 30vh; display: flex; flex-direction: column;
     justify-content: flex-end; align-items: center;
@@ -381,7 +409,7 @@
   section.closing .footer-contact-links{
     display: flex; flex-wrap: wrap; justify-content: space-between; align-self: flex-start;
     width: 100%; gap: 12px 18px;
-    margin: 0 0 24px 0; opacity: 0; transition: opacity 0.9s ease 0.1s;
+    margin: 0 0 24px 0; opacity: 0; transition: opacity var(--dur-short) ease 0.1s;
   }
   section.closing .footer-contact-links .footer-contact-group{
     display: flex; flex-wrap: wrap; gap: 8px 18px;
@@ -390,14 +418,14 @@
     font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
     text-transform: uppercase; text-decoration: none;
     color: var(--ink); border-bottom: 1px solid var(--ink);
-    padding-bottom: 2px; transition: opacity .2s ease;
+    padding-bottom: 2px; transition: opacity var(--dur-micro) ease;
   }
   section.closing .footer-contact-links a:hover{ opacity: 0.6; }
   section.closing.in-view .footer-contact-links{ opacity: 1; }
   section.closing .closing-copyright{
     font-size: 11px; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--ink-soft);
-    margin: 8px 0 0 0; opacity: 0; transition: opacity 0.9s ease 0.2s;
+    margin: 8px 0 0 0; opacity: 0; transition: opacity var(--dur-short) ease 0.2s;
   }
   section.closing.in-view .closing-copyright{ opacity: 1; }
   @media (prefers-reduced-motion: reduce){
@@ -416,7 +444,8 @@
     background-color: #f6f4f1; overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     opacity: 0; visibility: hidden;
-    transition: opacity 0.8s cubic-bezier(.22,1,.36,1), visibility 0.8s ease;
+    transition: opacity var(--dur-short) var(--ease-editorial),
+                visibility var(--dur-short) ease;
   }
   .about-overlay.open{ opacity: 1; visibility: visible; }
   body.about-open{ overflow: hidden; }
@@ -426,13 +455,15 @@
     background: none; border: none; padding: 0;
     width: 32px; height: 32px; font-size: 28px; font-weight: 300;
     line-height: 1; color: var(--ink); cursor: pointer;
-    transform: rotate(45deg); transition: opacity 0.2s ease;
+    transform: rotate(45deg); transition: opacity var(--dur-micro) ease;
   }
   .about-overlay-close:hover{ opacity: 0.6; }
 
   .about-line{
     opacity: 0; transform: translateY(-18px);
-    transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    will-change: transform, opacity;
+    transition: opacity var(--dur-short) var(--ease-editorial),
+                transform var(--dur-short) var(--ease-editorial);
   }
   .about-overlay.open .about-line{ opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce){
@@ -487,7 +518,7 @@
     font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
     text-transform: uppercase; text-decoration: none;
     color: var(--ink); border-bottom: 1px solid var(--ink);
-    padding-bottom: 2px; transition: opacity .2s ease;
+    padding-bottom: 2px; transition: opacity var(--dur-micro) ease;
   }
   .about-contact-links a:hover{ opacity: 0.6; }
   @media (max-width: 900px){
@@ -570,7 +601,6 @@
 
   <figure class="plate" id="firstPlateDoppel"><img src="img/doppelganger-00.jpg" srcset="img/doppelganger-00-480w.jpg 480w, img/doppelganger-00-900w.jpg 900w, img/doppelganger-00-1400w.jpg 1400w, img/doppelganger-00-1944w.jpg 1944w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 mood board" decoding="async"><figcaption>S/S 2025 — Mood board &amp; technical design</figcaption></figure>
 
-    <!-- 4 VIDEO AFFIANCATI — Doppelgänger Woman -->
   <div class="video-quad" id="videoQuadDoppel">
     <video muted loop playsinline preload="none" poster="img/posters/poster-01.jpg" data-src="video/video-01.mp4"></video>
     <video muted loop playsinline preload="none" poster="img/posters/poster-02.jpg" data-src="video/video-02.mp4"></video>
@@ -579,13 +609,14 @@
   </div>
 
   <figure class="plate"><img src="img/doppelganger-01.jpg" srcset="img/doppelganger-01-480w.jpg 480w, img/doppelganger-01-900w.jpg 900w, img/doppelganger-01-1400w.jpg 1400w, img/doppelganger-01-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger Womenswear S/S 2025 campaign" loading="lazy" decoding="async"><figcaption>S/S 2025 — Campaign</figcaption></figure>
-  <figure class="plate full-bleed"><img src="img/doppelganger-02.jpg" srcset="img/doppelganger-02-480w.jpg 480w, img/doppelganger-02-900w.jpg 900w, img/doppelganger-02-1400w.jpg 1400w, img/doppelganger-02-1800w.jpg 1800w" sizes="100vw" width="1800" height="1125" alt="Doppelgänger Womenswear S/S 2025 editorial" loading="lazy" decoding="async"></figure>
+  <figure class="plate full-bleed"><img src="img/doppelganger-02.jpg" srcset="img/doppelganger-02-480w.jpg 480w, img/doppelganger-02-900w.jpg 900w, img/doppelganger-02-1400w.jpg 1400w, img/doppelganger-02-1800w.jpg 1800w" sizes="100vw" width="1800" height="1125" alt="Doppelgänger Womenswear S/S 2025 editorial" loading="lazy" decoding="async"><figcaption>S/S 2025 — Editorial</figcaption></figure>
   <figure class="plate"><img src="img/doppelganger-03.jpg" srcset="img/doppelganger-03-480w.jpg 480w, img/doppelganger-03-900w.jpg 900w, img/doppelganger-03-1400w.jpg 1400w, img/doppelganger-03-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 lookbook" loading="lazy" decoding="async"><figcaption>S/S 2025 — Lookbook</figcaption></figure>
-  <figure class="plate"><img src="img/doppelganger-04.jpg" srcset="img/doppelganger-04-480w.jpg 480w, img/doppelganger-04-900w.jpg 900w, img/doppelganger-04-1400w.jpg 1400w, img/doppelganger-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 lookbook tailoring" loading="lazy" decoding="async"></figure>
-  <figure class="plate"><img src="img/doppelganger-05.jpg" srcset="img/doppelganger-05-480w.jpg 480w, img/doppelganger-05-900w.jpg 900w, img/doppelganger-05-1400w.jpg 1400w, img/doppelganger-05-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 silhouettes" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/doppelganger-04.jpg" srcset="img/doppelganger-04-480w.jpg 480w, img/doppelganger-04-900w.jpg 900w, img/doppelganger-04-1400w.jpg 1400w, img/doppelganger-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 lookbook tailoring" loading="lazy" decoding="async"><figcaption>S/S 2025 — Tailoring</figcaption></figure>
+  <figure class="plate"><img src="img/doppelganger-05.jpg" srcset="img/doppelganger-05-480w.jpg 480w, img/doppelganger-05-900w.jpg 900w, img/doppelganger-05-1400w.jpg 1400w, img/doppelganger-05-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 silhouettes" loading="lazy" decoding="async"><figcaption>S/S 2025 — Silhouettes</figcaption></figure>
   <figure class="plate"><img src="img/doppelganger-06.jpg" srcset="img/doppelganger-06-480w.jpg 480w, img/doppelganger-06-900w.jpg 900w, img/doppelganger-06-1400w.jpg 1400w, img/doppelganger-06-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 construction details" loading="lazy" decoding="async"><figcaption>S/S 2025 — Construction &amp; details</figcaption></figure>
   <figure class="plate"><img src="img/doppelganger-07.jpg" srcset="img/doppelganger-07-480w.jpg 480w, img/doppelganger-07-900w.jpg 900w, img/doppelganger-07-1400w.jpg 1400w, img/doppelganger-07-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 accessories" loading="lazy" decoding="async"><figcaption>S/S 2025 — Accessories</figcaption></figure>
 </section>
+
 <section class="project" id="musae">
   <div class="color-strip-container">
     <div class="color-strip" id="colorStripMusae">
@@ -635,16 +666,16 @@
   </div>
 
   <figure class="plate" id="firstPlateMusae"><img src="img/musae-01.jpg" srcset="img/musae-01-480w.jpg 480w, img/musae-01-900w.jpg 900w, img/musae-01-1400w.jpg 1400w, img/musae-01-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Summer 01" loading="lazy" decoding="async"><figcaption>Summer 01</figcaption></figure>
-  <figure class="plate"><img src="img/musae-02.jpg" srcset="img/musae-02-480w.jpg 480w, img/musae-02-900w.jpg 900w, img/musae-02-1400w.jpg 1400w, img/musae-02-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Summer 01 look" loading="lazy" decoding="async"></figure>
-  <figure class="plate"><img src="img/musae-03.jpg" srcset="img/musae-03-480w.jpg 480w, img/musae-03-900w.jpg 900w, img/musae-03-1400w.jpg 1400w, img/musae-03-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Summer 01 dress" loading="lazy" decoding="async"></figure>
-  <figure class="plate"><img src="img/musae-04.jpg" srcset="img/musae-04-480w.jpg 480w, img/musae-04-900w.jpg 900w, img/musae-04-1400w.jpg 1400w, img/musae-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Summer 01 lookbook" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/musae-02.jpg" srcset="img/musae-02-480w.jpg 480w, img/musae-02-900w.jpg 900w, img/musae-02-1400w.jpg 1400w, img/musae-02-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Summer 01 look" loading="lazy" decoding="async"><figcaption>Summer 01 — Look</figcaption></figure>
+  <figure class="plate"><img src="img/musae-03.jpg" srcset="img/musae-03-480w.jpg 480w, img/musae-03-900w.jpg 900w, img/musae-03-1400w.jpg 1400w, img/musae-03-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Summer 01 dress" loading="lazy" decoding="async"><figcaption>Summer 01 — Dress</figcaption></figure>
+  <figure class="plate"><img src="img/musae-04.jpg" srcset="img/musae-04-480w.jpg 480w, img/musae-04-900w.jpg 900w, img/musae-04-1400w.jpg 1400w, img/musae-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Summer 01 lookbook" loading="lazy" decoding="async"><figcaption>Summer 01 — Lookbook</figcaption></figure>
   <figure class="plate"><img src="img/musae-sketch-ss01.jpg" srcset="img/musae-sketch-ss01-480w.jpg 480w, img/musae-sketch-ss01-900w.jpg 900w, img/musae-sketch-ss01-1400w.jpg 1400w, img/musae-sketch-ss01-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae sketches" loading="lazy" decoding="async"><figcaption>Summer 01 — Technical Sketches</figcaption></figure>
-  
+
   <figure class="plate" id="firstPlateMusaeFall"><img src="img/musae-05.jpg" srcset="img/musae-05-480w.jpg 480w, img/musae-05-900w.jpg 900w, img/musae-05-1400w.jpg 1400w, img/musae-05-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01" loading="lazy" decoding="async"><figcaption>Fall 01</figcaption></figure>
-  
-  <figure class="plate"><img src="img/musae-06.jpg" srcset="img/musae-06-480w.jpg 480w, img/musae-06-900w.jpg 900w, img/musae-06-1400w.jpg 1400w, img/musae-06-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01 editorial" loading="lazy" decoding="async"></figure>
-  <figure class="plate"><img src="img/musae-07.jpg" srcset="img/musae-07-480w.jpg 480w, img/musae-07-900w.jpg 900w, img/musae-07-1400w.jpg 1400w, img/musae-07-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01 coat" loading="lazy" decoding="async"></figure>
-  <figure class="plate"><img src="img/musae-08.jpg" srcset="img/musae-08-480w.jpg 480w, img/musae-08-900w.jpg 900w, img/musae-08-1400w.jpg 1400w, img/musae-08-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01 eveningwear" loading="lazy" decoding="async"></figure>
+
+  <figure class="plate"><img src="img/musae-06.jpg" srcset="img/musae-06-480w.jpg 480w, img/musae-06-900w.jpg 900w, img/musae-06-1400w.jpg 1400w, img/musae-06-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01 editorial" loading="lazy" decoding="async"><figcaption>Fall 01 — Editorial</figcaption></figure>
+  <figure class="plate"><img src="img/musae-07.jpg" srcset="img/musae-07-480w.jpg 480w, img/musae-07-900w.jpg 900w, img/musae-07-1400w.jpg 1400w, img/musae-07-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01 coat" loading="lazy" decoding="async"><figcaption>Fall 01 — Coat</figcaption></figure>
+  <figure class="plate"><img src="img/musae-08.jpg" srcset="img/musae-08-480w.jpg 480w, img/musae-08-900w.jpg 900w, img/musae-08-1400w.jpg 1400w, img/musae-08-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01 eveningwear" loading="lazy" decoding="async"><figcaption>Fall 01 — Eveningwear</figcaption></figure>
   <figure class="plate"><img src="img/musae-09.jpg" srcset="img/musae-09-480w.jpg 480w, img/musae-09-900w.jpg 900w, img/musae-09-1400w.jpg 1400w, img/musae-09-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Musae Fall 01 sketch to garment" loading="lazy" decoding="async"><figcaption>Fall 01 — Look 06, sketch to garment</figcaption></figure>
 </section>
 
@@ -683,7 +714,7 @@
   </div>
 
   <figure class="plate" id="firstPlateIam"><img src="img/iam-01.jpg" srcset="img/iam-01-480w.jpg 480w, img/iam-01-900w.jpg 900w, img/iam-01-1400w.jpg 1400w, img/iam-01-1600w.jpg 1600w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM campaign" loading="lazy" decoding="async"><figcaption>Denim — S/S 2021 campaign</figcaption></figure>
-  <figure class="plate"><img src="img/iam-02.jpg" srcset="img/iam-02-480w.jpg 480w, img/iam-02-900w.jpg 900w, img/iam-02-1400w.jpg 1400w, img/iam-02-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM photo" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/iam-02.jpg" srcset="img/iam-02-480w.jpg 480w, img/iam-02-900w.jpg 900w, img/iam-02-1400w.jpg 1400w, img/iam-02-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM photo" loading="lazy" decoding="async"><figcaption>Denim — Editorial</figcaption></figure>
   <figure class="plate"><img src="img/iam-03.jpg" srcset="img/iam-03-480w.jpg 480w, img/iam-03-900w.jpg 900w, img/iam-03-1400w.jpg 1400w, img/iam-03-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM lookbook" loading="lazy" decoding="async"><figcaption>Fall 2022</figcaption></figure>
   <figure class="plate"><img src="img/iam-04.jpg" srcset="img/iam-04-480w.jpg 480w, img/iam-04-900w.jpg 900w, img/iam-04-1400w.jpg 1400w, img/iam-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM campaign winter" loading="lazy" decoding="async"><figcaption>Winter 2023</figcaption></figure>
 </section>
@@ -706,8 +737,8 @@
   </div>
 
   <figure class="plate"><img src="img/misssixty-01.jpg" srcset="img/misssixty-01-480w.jpg 480w, img/misssixty-01-900w.jpg 900w, img/misssixty-01-1400w.jpg 1400w, img/misssixty-01-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty installation" loading="lazy" decoding="async"><figcaption>Bread&amp;Butter 2012 — Installation</figcaption></figure>
-  <figure class="plate"><img src="img/misssixty-03.jpg" srcset="img/misssixty-03-480w.jpg 480w, img/misssixty-03-900w.jpg 900w, img/misssixty-03-1400w.jpg 1400w, img/misssixty-03-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty booth" loading="lazy" decoding="async"></figure>
-  <figure class="plate"><img src="img/misssixty-04.jpg" srcset="img/misssixty-04-480w.jpg 480w, img/misssixty-04-900w.jpg 900w, img/misssixty-04-1400w.jpg 1400w, img/misssixty-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty lounge" loading="lazy" decoding="async"></figure>
+  <figure class="plate"><img src="img/misssixty-03.jpg" srcset="img/misssixty-03-480w.jpg 480w, img/misssixty-03-900w.jpg 900w, img/misssixty-03-1400w.jpg 1400w, img/misssixty-03-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty booth" loading="lazy" decoding="async"><figcaption>Bread&amp;Butter 2012 — Booth</figcaption></figure>
+  <figure class="plate"><img src="img/misssixty-04.jpg" srcset="img/misssixty-04-480w.jpg 480w, img/misssixty-04-900w.jpg 900w, img/misssixty-04-1400w.jpg 1400w, img/misssixty-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty lounge" loading="lazy" decoding="async"><figcaption>Bread&amp;Butter 2012 — Lounge</figcaption></figure>
   <figure class="plate"><img src="img/misssixty-05.jpg" srcset="img/misssixty-05-480w.jpg 480w, img/misssixty-05-900w.jpg 900w, img/misssixty-05-1400w.jpg 1400w, img/misssixty-05-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty campaigns" loading="lazy" decoding="async"><figcaption>Campaigns</figcaption></figure>
   <figure class="plate"><img src="img/misssixty-05B.jpg" srcset="img/misssixty-05B-480w.jpg 480w, img/misssixty-05B-900w.jpg 900w, img/misssixty-05B-1400w.jpg 1400w, img/misssixty-05B-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty catwalk" loading="lazy" decoding="async"><figcaption>S/S 2013 — Catwalk</figcaption></figure>
   <figure class="plate"><img src="img/misssixty-06.jpg" srcset="img/misssixty-06-480w.jpg 480w, img/misssixty-06-900w.jpg 900w, img/misssixty-06-1400w.jpg 1400w, img/misssixty-06-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Miss Sixty show" loading="lazy" decoding="async"><figcaption>F/W 2009-2010 — Catwalk</figcaption></figure>
@@ -733,7 +764,6 @@
 </section>
 
 </main>
-
 <div class="about-overlay" id="aboutOverlay" role="dialog" aria-modal="true" aria-label="About Valeria Ribichini">
   <button type="button" class="about-overlay-close" id="aboutOverlayClose" aria-label="Close">+</button>
 
@@ -842,6 +872,17 @@
   const siteNav = document.getElementById('siteNav');
   const main = document.getElementById('main');
 
+  /* ---------- Lettura robusta delle variabili CSS di timing ---------- */
+  function readCssTime(varName, fallback) {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    if (!raw) return fallback;
+    if (raw.endsWith('ms')) return parseFloat(raw) / 1000;
+    if (raw.endsWith('s')) return parseFloat(raw);
+    return parseFloat(raw) || fallback;
+  }
+  const STAGGER = readCssTime('--stagger', 0.12);
+
+  /* ---------- Menu mobile ---------- */
   function closeMenu() {
     navLinks.classList.remove('mobile-open');
     navToggle.classList.remove('open');
@@ -877,6 +918,7 @@
     }
   });
 
+  /* ---------- Overlay About ---------- */
   const moreAboutBtn = document.getElementById('moreAboutBtn');
   const aboutOverlay = document.getElementById('aboutOverlay');
   const aboutOverlayClose = document.getElementById('aboutOverlayClose');
@@ -905,26 +947,23 @@
     lastFocusedEl = document.activeElement;
     const lines = aboutOverlay.querySelectorAll('.about-line');
     lines.forEach((el, i) => {
-      el.style.transitionDelay = Math.min(i * 0.055, 1.3) + 's';
+      el.style.transitionDelay = Math.min(i * STAGGER, 1.3) + 's';
     });
     aboutOverlay.classList.add('open');
     document.body.classList.add('about-open');
     if (main) main.setAttribute('aria-hidden', 'true');
     aboutOverlayClose.focus();
-    document.addEventListener('keydown', trapFocus);
   }
 
   function closeAboutOverlay(targetId = null) {
     aboutOverlay.classList.remove('open');
     document.body.classList.remove('about-open');
     if (main) main.removeAttribute('aria-hidden');
-    document.removeEventListener('keydown', trapFocus);
     const targetSection = targetId ? document.getElementById(targetId) : null;
     if (targetSection) {
       targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (lastFocusedEl) {
-      lastFocusedEl.focus();
     }
+    if (lastFocusedEl) lastFocusedEl.focus();
   }
 
   if (moreAboutBtn && aboutOverlay) {
@@ -933,34 +972,34 @@
     aboutOverlay.addEventListener('click', (e) => {
       if (e.target === aboutOverlay) closeAboutOverlay();
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && aboutOverlay.classList.contains('open')) {
-        closeAboutOverlay();
-      }
-    });
   }
 
+  /* ---------- Gestione unica dei tasti (Escape + focus trap) ---------- */
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
-      closeMenu();
-      navToggle.focus();
+    if (e.key === 'Escape') {
+      if (aboutOverlay && aboutOverlay.classList.contains('open')) {
+        closeAboutOverlay();
+      } else if (navLinks.classList.contains('mobile-open')) {
+        closeMenu();
+        navToggle.focus();
+      }
+    }
+    if (e.key === 'Tab' && aboutOverlay && aboutOverlay.classList.contains('open')) {
+      trapFocus(e);
     }
   });
-  // Nav: diventa chiara quando passa sopra i video
-  const SCROLL_THRESHOLD = 60;
+
+  /* ---------- Nav: diventa chiara sopra i video ---------- */
   let scrollTicking = false;
   const videoQuadSection = document.getElementById('videoQuadDoppel');
 
   function updateNavBackground() {
-    siteNav.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
-
     if (videoQuadSection) {
       const rect = videoQuadSection.getBoundingClientRect();
       const headerHeight = siteNav.offsetHeight || 80;
       const overDarkVideo = rect.top <= headerHeight && rect.bottom >= 0;
       siteNav.classList.toggle('on-dark', overDarkVideo);
     }
-
     scrollTicking = false;
   }
 
@@ -975,36 +1014,30 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
 
-  function updateColorStripHeights() {
-    const stripsConfig = [
-      { plateId: 'firstPlateDoppel', stripId: 'colorStripDoppel' },
-      { plateId: 'firstPlateMusae', stripId: 'colorStripMusae' },
-      { plateId: 'firstPlateMusaeFall', stripId: 'colorStripMusaeFall', startAtPlate: true },
-      { plateId: 'firstPlateIam', stripId: 'colorStripIam' }
-    ];
-
-    const referencePlate = document.getElementById(stripsConfig[0].plateId);
-    const referenceHeight = referencePlate
-      ? referencePlate.offsetTop + referencePlate.offsetHeight
-      : 0;
-
-    stripsConfig.forEach(conf => {
-      const plate = document.getElementById(conf.plateId);
-      const strip = document.getElementById(conf.stripId);
-      if (plate && strip) {
-        if (conf.startAtPlate) {
-          strip.style.top = plate.offsetTop + 'px';
-        } else {
-          strip.style.top = '0px';
-        }
-        strip.style.height = referenceHeight + 'px';
-      }
-    });
+  /* ---------- Posizione della colorStripMusaeFall ---------- */
+  /* Mantiene la striscia Fall allineata alla sua plate — debounced */
+  function updateMusaeFallTop() {
+    const plate = document.getElementById('firstPlateMusaeFall');
+    const strip = document.getElementById('colorStripMusaeFall');
+    if (!plate || !strip) return;
+    strip.style.setProperty('--musae-fall-top', plate.offsetTop + 'px');
   }
 
-  window.addEventListener('load', updateColorStripHeights);
-  window.addEventListener('resize', updateColorStripHeights);
+  let musaeFallTicking = false;
+  function onMusaeFallResize() {
+    if (!musaeFallTicking) {
+      window.requestAnimationFrame(() => {
+        updateMusaeFallTop();
+        musaeFallTicking = false;
+      });
+      musaeFallTicking = true;
+    }
+  }
 
+  window.addEventListener('load', updateMusaeFallTop);
+  window.addEventListener('resize', onMusaeFallResize);
+
+  /* ---------- Observer strisce colori (solo animazione) ---------- */
   const stripObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -1030,8 +1063,8 @@
     }
   });
 
+  /* ---------- Closing ---------- */
   const closingSection = document.querySelector('section.closing');
-
   if (closingSection) {
     const closingObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1044,8 +1077,8 @@
     closingObserver.observe(closingSection);
   }
 
+  /* ---------- Plate ---------- */
   const plates = document.querySelectorAll('.plate');
-
   if (plates.length) {
     const plateObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1055,23 +1088,20 @@
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
     plates.forEach((plate) => plateObserver.observe(plate));
   }
 
+  /* ---------- Project head (reveal-line) ---------- */
   const projectHeads = document.querySelectorAll('.project-head');
-
   if (projectHeads.length) {
     const projectHeadObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const lines = entry.target.querySelectorAll('.reveal-line');
           requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              lines.forEach((el, i) => {
-                el.style.transitionDelay = Math.min(i * 0.18, 1.3) + 's';
-                el.classList.add('in-view');
-              });
+            lines.forEach((el, i) => {
+              el.style.transitionDelay = Math.min(i * STAGGER, 1.3) + 's';
+              el.classList.add('in-view');
             });
           });
           projectHeadObserver.unobserve(entry.target);
@@ -1084,8 +1114,7 @@
     });
   }
 
-  // 4 video affiancati — caricati e avviati solo quando entrano in viewport,
-  // messi in pausa quando escono (risparmia banda e non blocca il caricamento iniziale)
+  /* ---------- 4 video affiancati (lazy) ---------- */
   const videoQuad = document.getElementById('videoQuadDoppel');
   const videoQuadVideoEls = videoQuad ? videoQuad.querySelectorAll('video') : [];
   let videoQuadLoaded = false;
@@ -1124,45 +1153,6 @@
     }, { threshold: 0.2 });
 
     videoQuadObserver.observe(videoQuad);
-  }
-
-  // Adattamento altezza contenitore .video-quad in base all'aspect ratio
-  // del video PIÙ VERTICALE (così nessun video viene tagliato troppo)
-  const videoQuadPage = document.getElementById('videoQuadDoppel');
-  const videoQuadVideos = videoQuadPage
-    ? videoQuadPage.querySelectorAll('video')
-    : [];
-
-   function resizeVideoQuad() {
-    // Altezza gestita dal CSS (56.25vw come video Uomo) — JS disattivato
-    return;
-  }
-
-  if (videoQuadVideos.length) {
-    // Aspetta che tutti i video abbiano metadata (per conoscere i loro ratio)
-    let loadedCount = 0;
-    const totalVideos = videoQuadVideos.length;
-
-    videoQuadVideos.forEach(v => {
-      v.addEventListener('loadedmetadata', () => {
-        loadedCount++;
-        if (loadedCount === totalVideos) {
-          resizeVideoQuad();
-        }
-      });
-      // Se già caricato
-      if (v.readyState >= 1) {
-        loadedCount++;
-      }
-    });
-
-    // Se erano già tutti caricati
-    if (loadedCount === totalVideos) {
-      resizeVideoQuad();
-    }
-
-    window.addEventListener('resize', resizeVideoQuad);
-    window.addEventListener('load', resizeVideoQuad);
   }
 </script>
 
