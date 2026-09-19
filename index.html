@@ -7,15 +7,20 @@
 <meta name="description" content="Valeria Ribichini — Creative Director working across contemporary and mass-market Womenswear and Menswear.">
 <meta name="theme-color" content="#f6f4f1">
 
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="canonical" href="https://www.valeriaribichini.com/">
 
-<style>
-  /* ---------- Font self-hosted ---------- */
+<meta property="og:type" content="website">
+<meta property="og:title" content="Valeria Ribichini — Creative Director">
+<meta property="og:description" content="Creative Director working across contemporary and mass-market Womenswear and Menswear.">
+<meta property="og:url" content="https://www.valeriaribichini.com/">
+<meta property="og:image" content="https://www.valeriaribichini.com/img/doppelganger-00-1400w.jpg">
+<meta name="twitter:card" content="summary_large_image">
 
+<style>
   @font-face {
     font-family: 'Inter';
     font-style: normal;
@@ -49,7 +54,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('fonts/inter-v20-latin-700.woff2') format('woff2');
+    src: url('fonts/inter-v18-latin-700.woff2') format('woff2');
   }
   @font-face {
     font-family: 'Inter';
@@ -64,7 +69,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('fonts/cormorant-garamond-v18-latin-regular.woff2') format('woff2');
+    src: url('fonts/cormorant-garamond-v21-latin-regular.woff2') format('woff2');
   }
   @font-face {
     font-family: 'Cormorant Garamond';
@@ -87,14 +92,14 @@
     font-display: swap;
     src: url('fonts/cormorant-garamond-v21-latin-600italic.woff2') format('woff2');
   }
-    :root{
+
+  :root{
     --paper: #ffffff;
     --ink: #000000;
     --ink-soft: #4d4d4d;
     --line: #e5e5e5;
     --strip-w: clamp(10px, 4vw, 48px);
     --strip-h: 1100px;
-
     --ease-editorial: cubic-bezier(.22,1,.36,1);
     --dur-micro: 0.25s;
     --dur-short: 1.1s;
@@ -103,16 +108,11 @@
     --stagger: 0.08s;
   }
 
-/* ---------- Altezza strisce colori — valori responsive ---------- */
-  @media (max-width: 900px){
-    :root { --strip-h: 800px; }
-  }
-  @media (max-width: 540px){
-    :root { --strip-h: 600px; }
-  }
+  @media (max-width: 900px){ :root { --strip-h: 800px; } }
+  @media (max-width: 540px){ :root { --strip-h: 600px; } }
 
   *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; scrollbar-gutter: stable; }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
   .skip-link {
@@ -168,7 +168,7 @@
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 800; font-size: 16px; letter-spacing: 0.03em;
     text-transform: uppercase; text-decoration: none;
-    color: var(--ink); cursor: pointer; z-index: 2301;
+    color: var(--ink); cursor: pointer; z-index: 2400;
     pointer-events: auto;
     transition: opacity var(--dur-micro) ease, color var(--dur-micro) ease;
     opacity: 0; animation: navNameFadeIn var(--dur-long) ease forwards; animation-delay: 0.1s;
@@ -178,15 +178,15 @@
 
   .nav-toggle{
     display: flex; align-items: center; justify-content: center;
+    position: relative;
     background: none; border: none; padding: 0; cursor: pointer;
-    width: 32px; height: 32px; font-size: 28px; font-weight: 300;
-    line-height: 1; color: var(--ink); z-index: 2301;
+    width: 32px; height: 32px; color: var(--ink); z-index: 2400;
     transition: transform var(--dur-micro) var(--ease-editorial), color var(--dur-micro) ease;
   }
   .nav-toggle.open { transform: rotate(45deg); }
 
   nav.links{
-    display: flex; position: fixed; top: 65px; right: calc(5.2vw + 2px);
+    display: flex; position: fixed; top: 0; right: 5vw;
     background: transparent; flex-direction: column;
     justify-content: flex-start; align-items: flex-end; gap: 10px;
     opacity: 0; pointer-events: none; visibility: hidden;
@@ -195,6 +195,34 @@
   }
   nav.links.mobile-open{
     opacity: 1; pointer-events: auto; visibility: visible; transform: translateY(0);
+    right: 0; padding: 90px 5vw 24px 24px;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  }
+  nav.links.mobile-open.on-hero{
+    background: transparent;
+  }
+  nav.links.mobile-open.on-video{
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  @media (max-width: 900px){
+    nav.links.mobile-open{
+      left: 0;
+      right: 0;
+      align-items: flex-start;
+      padding-top: 100px;
+      padding-bottom: 24px;
+      padding-left: 5vw;
+      padding-right: 5vw;
+      border-radius: 0;
+    }
+    nav.links.mobile-open a{
+      text-align: left;
+    }
   }
   nav.links a{
     font-size: 11.5px; font-weight: 400; letter-spacing: 0.1em;
@@ -290,16 +318,16 @@
     .hero-editorial-card{ flex-direction: column; align-items: flex-start; gap: 16px; }
     .hero-portrait{ width: 110px; height: 140px; }
   }
- @media (max-width: 900px){
-  .hero-bottom-content{ display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-  .hero-editorial-card{ display: contents; }
-  .hero-portrait{ order: 1; }
-  .hero-identity{ order: 2; }
-  .hero-bio-box{ order: 3; }
-}
-@media (max-width: 480px){
-  .hero-identity .role{ font-size: 10px; }
-}
+  @media (max-width: 900px){
+    .hero-bottom-content{ display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .hero-editorial-card{ display: contents; }
+    .hero-portrait{ order: 1; }
+    .hero-identity{ order: 2; }
+    .hero-bio-box{ order: 3; }
+  }
+  @media (max-width: 480px){
+    .hero-identity .role{ font-size: 10px; }
+  }
 
   section.project{
     padding: 90px 0 40px 0; border-top:1px solid var(--line); position: relative;
@@ -371,7 +399,6 @@
     padding-left: 6vw; padding-right: 6vw;
   }
 
-  /* ---------- 4 VIDEO AFFIANCATI ---------- */
   .video-quad{
     display: flex;
     width: 100%;
@@ -425,7 +452,6 @@
     }
   }
 
-  /* ---------- Striscia Colori Responsive ---------- */
   .color-strip-container {
     position: absolute; top: 0; left: 0; bottom: 0;
     width: var(--strip-w); z-index: 50;
@@ -520,11 +546,19 @@
   .about-overlay-close{
     position: fixed; top: 22px; right: 5vw; z-index: 2300;
     background: none; border: none; padding: 0;
-    width: 32px; height: 32px; font-size: 28px; font-weight: 300;
-    line-height: 1; color: var(--ink); cursor: pointer;
+    width: 32px; height: 32px; color: var(--ink); cursor: pointer;
     transform: rotate(45deg); transition: opacity var(--dur-micro) ease;
   }
   .about-overlay-close:hover{ opacity: 0.6; }
+
+  .nav-toggle::before, .nav-toggle::after,
+  .about-overlay-close::before, .about-overlay-close::after{
+    content: ''; position: absolute; top: 50%; left: calc(100% - 7px);
+    width: 19.8px; height: 1.3px; background: currentColor;
+    transform-origin: center;
+  }
+  .nav-toggle::before, .about-overlay-close::before{ transform: translate(-50%, -50%) rotate(45deg); }
+  .nav-toggle::after, .about-overlay-close::after{ transform: translate(-50%, -50%) rotate(-45deg); }
 
   .about-line{
     opacity: 0; transform: translateY(-18px);
@@ -552,7 +586,7 @@
     text-transform: uppercase; margin-bottom: 14px;
   }
   .about-columns{
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: 1.65fr 1fr;
     gap: 4.5vw; margin-bottom: 60px; align-items: start;
   }
   .about-columns.career-skills-grid{
@@ -594,8 +628,12 @@
     }
     .about-career{ margin-right: 0; }
   }
-
 </style>
+<noscript><style>
+  .plate img, .reveal-line, .video-quad video, .about-line { opacity: 1 !important; transform: none !important; }
+  .closing .footer-contact-links, .closing .closing-copyright { opacity: 1 !important; }
+  .color-strip { clip-path: inset(0 0 0% 0) !important; }
+</style></noscript>
 </head>
 <body>
 
@@ -609,9 +647,7 @@
     <a href="#iam">I AM</a>
     <a href="#misssixty">Miss Sixty</a>
   </nav>
-  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-    +
-  </button>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"></button>
 </header>
 
 <main id="main">
@@ -666,7 +702,7 @@
     </div>
   </div>
 
-  <figure class="plate" id="firstPlateDoppel"><img src="img/doppelganger-00.jpg" srcset="img/doppelganger-00-480w.jpg 480w, img/doppelganger-00-900w.jpg 900w, img/doppelganger-00-1400w.jpg 1400w, img/doppelganger-00-1944w.jpg 1944w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 mood board" decoding="async"><figcaption>S/S 2025 — Mood board &amp; technical design</figcaption></figure>
+  <figure class="plate" id="firstPlateDoppel"><img src="img/doppelganger-00.jpg" srcset="img/doppelganger-00-480w.jpg 480w, img/doppelganger-00-900w.jpg 900w, img/doppelganger-00-1400w.jpg 1400w, img/doppelganger-00-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="Doppelgänger S/S 2025 mood board" decoding="async"><figcaption>S/S 2025 — Mood board &amp; technical design</figcaption></figure>
 
   <div class="video-quad" id="videoQuadDoppel">
     <video muted loop playsinline preload="none" poster="img/posters/poster-01.jpg" data-src="video/video-01.mp4"></video>
@@ -780,7 +816,7 @@
     </div>
   </div>
 
-  <figure class="plate" id="firstPlateIam"><img src="img/iam-01.jpg" srcset="img/iam-01-480w.jpg 480w, img/iam-01-900w.jpg 900w, img/iam-01-1400w.jpg 1400w, img/iam-01-1600w.jpg 1600w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM campaign" loading="lazy" decoding="async"><figcaption>Denim — S/S 2021 campaign</figcaption></figure>
+  <figure class="plate" id="firstPlateIam"><img src="img/iam-01.jpg" srcset="img/iam-01-480w.jpg 480w, img/iam-01-900w.jpg 900w, img/iam-01-1400w.jpg 1400w, img/iam-01-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM campaign" loading="lazy" decoding="async"><figcaption>Denim — S/S 2021 campaign</figcaption></figure>
   <figure class="plate"><img src="img/iam-02.jpg" srcset="img/iam-02-480w.jpg 480w, img/iam-02-900w.jpg 900w, img/iam-02-1400w.jpg 1400w, img/iam-02-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM photo" loading="lazy" decoding="async"><figcaption>Denim — Editorial</figcaption></figure>
   <figure class="plate"><img src="img/iam-03.jpg" srcset="img/iam-03-480w.jpg 480w, img/iam-03-900w.jpg 900w, img/iam-03-1400w.jpg 1400w, img/iam-03-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM lookbook" loading="lazy" decoding="async"><figcaption>Fall 2022</figcaption></figure>
   <figure class="plate"><img src="img/iam-04.jpg" srcset="img/iam-04-480w.jpg 480w, img/iam-04-900w.jpg 900w, img/iam-04-1400w.jpg 1400w, img/iam-04-1800w.jpg 1800w" sizes="(max-width: 1400px) 88vw, 1232px" width="1800" height="1125" alt="I AM campaign winter" loading="lazy" decoding="async"><figcaption>Winter 2023</figcaption></figure>
@@ -831,15 +867,16 @@
 </section>
 
 </main>
+
 <div class="about-overlay" id="aboutOverlay" role="dialog" aria-modal="true" aria-label="About Valeria Ribichini">
-  <button type="button" class="about-overlay-close" id="aboutOverlayClose" aria-label="Close">+</button>
+  <button type="button" class="about-overlay-close" id="aboutOverlayClose" aria-label="Close"></button>
 
   <div class="about-wrap">
 
     <div class="about-columns">
       <div class="about-block">
         <div class="label about-line">About</div>
-        <p class="about-line">Creative Director &amp; Design Leader with <strong>25+ years</strong> in international fashion — leading teams of up to 10 people, repositioning brand identity across a network of <strong>350+ points of sale</strong>, and driving double-digit e-commerce growth.</p>
+        <p class="about-line">Creative Director with <strong>25+ years</strong> in international fashion — leading teams of up to 10 people, repositioning brand identity across a network of <strong>350+ points of sale</strong>, and driving double-digit e-commerce growth.</p>
         <p class="about-line">My path has spanned Miss Sixty, Tally Weijl and Doppelgänger, scaling retail turnover to <strong>€400M</strong>, launching NYFW capsules, and building global partnerships with Renault and Harrods.</p>
       </div>
       <div class="about-block">
@@ -852,7 +889,7 @@
       <div class="about-career">
         <div class="label about-line">Career</div>
 
-                <div class="career-entry about-line">
+        <div class="career-entry about-line">
           <div class="role-line">Doppelgänger — Creative Director <span>2024 — Present, Rome</span></div>
           <p style="color: var(--ink); font-weight: 400; font-family: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif; text-transform: none; font-size: 14px;">Progression: Creative Director — Womenswear (2024 — 2025) · Creative Director — Menswear (2025 — Present)</p>
           <p>Led Menswear from 2025 — setting seasonal inspiration, color, fabric and product direction and designing core collection pieces — after directing the Womenswear collection through full creative direction, brand repositioning and the Rome flagship retail concept. Across both lines, managed 4 designers and 1 graphic over 122 points of sale, delivering <strong>+9% L4L growth, ~€7.9M in e-commerce and 59% sell-through</strong>, with omnichannel direction and sustainable sourcing through Première Vision and Milano Unica.</p>
@@ -932,13 +969,13 @@
 
   </div>
 </div>
+
 <script>
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   const siteNav = document.getElementById('siteNav');
   const main = document.getElementById('main');
 
-  /* ---------- Lettura robusta delle variabili CSS di timing ---------- */
   function readCssTime(varName, fallback) {
     const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
     if (!raw) return fallback;
@@ -948,12 +985,12 @@
   }
   const STAGGER = readCssTime('--stagger', 0.12);
 
-  /* ---------- Menu mobile ---------- */
   function closeMenu() {
     navLinks.classList.remove('mobile-open');
     navToggle.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.setAttribute('aria-label', 'Open menu');
+    requestAnimationFrame(updateNavBackground);
   }
 
   navToggle.addEventListener('click', () => {
@@ -961,6 +998,7 @@
     navToggle.classList.toggle('open', isOpen);
     navToggle.setAttribute('aria-expanded', isOpen);
     navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    requestAnimationFrame(updateNavBackground);
   });
 
   navLinks.addEventListener('click', (e) => {
@@ -984,7 +1022,6 @@
     }
   });
 
-  /* ---------- Overlay About ---------- */
   const moreAboutBtn = document.getElementById('moreAboutBtn');
   const aboutOverlay = document.getElementById('aboutOverlay');
   const aboutOverlayClose = document.getElementById('aboutOverlayClose');
@@ -1011,9 +1048,12 @@
 
   function openAboutOverlay() {
     lastFocusedEl = document.activeElement;
+    closeMenu();
+    aboutOverlay.scrollTop = 0;
     const lines = aboutOverlay.querySelectorAll('.about-line');
-      lines.forEach((el, i) => {
-      el.style.transitionDelay = Math.min(i * STAGGER, 0.7) + 's';
+    const ABOUT_STAGGER = 0.05, ABOUT_MAX_DELAY = 1.6;
+    lines.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i * ABOUT_STAGGER, ABOUT_MAX_DELAY) + 's';
     });
     aboutOverlay.classList.add('open');
     document.body.classList.add('about-open');
@@ -1040,7 +1080,6 @@
     });
   }
 
-  /* ---------- Gestione unica dei tasti (Escape + focus trap) ---------- */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (aboutOverlay && aboutOverlay.classList.contains('open')) {
@@ -1055,17 +1094,30 @@
     }
   });
 
-  /* ---------- Nav: diventa chiara sopra i video ---------- */
   let scrollTicking = false;
-  const videoQuadSection = document.getElementById('videoQuadDoppel');
+  const videoSectionsToCheck = [
+    document.getElementById('videoQuadDoppel')
+  ].filter(Boolean);
 
   function updateNavBackground() {
-    if (videoQuadSection) {
-      const rect = videoQuadSection.getBoundingClientRect();
-      const headerHeight = siteNav.offsetHeight || 80;
-      const overDarkVideo = rect.top <= headerHeight && rect.bottom >= 0;
-      siteNav.classList.toggle('on-dark', overDarkVideo);
-    }
+    const headerHeight = siteNav.offsetHeight || 80;
+
+    const menuOpen = navLinks.classList.contains('mobile-open');
+    const coverBottom = menuOpen ? Math.max(headerHeight, navLinks.offsetHeight) : 0;
+
+    const overDarkVideo = videoSectionsToCheck.some(section => {
+      const rect = section.getBoundingClientRect();
+      return rect.top <= headerHeight && rect.bottom >= coverBottom;
+    });
+
+    const heroEl = document.getElementById('top');
+    const heroRect = heroEl ? heroEl.getBoundingClientRect() : null;
+    const overHero = heroRect ? heroRect.bottom > headerHeight : false;
+
+    siteNav.classList.toggle('on-dark', overDarkVideo);
+    navLinks.classList.toggle('on-video', overDarkVideo);
+    navLinks.classList.toggle('on-hero', overHero && !overDarkVideo);
+
     scrollTicking = false;
   }
 
@@ -1080,8 +1132,6 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
 
-  /* ---------- Posizione della colorStripMusaeFall ---------- */
-  /* Mantiene la striscia Fall allineata alla sua plate — debounced */
   function updateMusaeFallTop() {
     const plate = document.getElementById('firstPlateMusaeFall');
     const strip = document.getElementById('colorStripMusaeFall');
@@ -1103,7 +1153,6 @@
   window.addEventListener('load', updateMusaeFallTop);
   window.addEventListener('resize', onMusaeFallResize);
 
-  /* ---------- Observer strisce colori (solo animazione) ---------- */
   const stripObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -1129,7 +1178,6 @@
     }
   });
 
-  /* ---------- Closing ---------- */
   const closingSection = document.querySelector('section.closing');
   if (closingSection) {
     const closingObserver = new IntersectionObserver((entries) => {
@@ -1143,7 +1191,6 @@
     closingObserver.observe(closingSection);
   }
 
-  /* ---------- Plate ---------- */
   const plates = document.querySelectorAll('.plate');
   if (plates.length) {
     const plateObserver = new IntersectionObserver((entries) => {
@@ -1157,7 +1204,6 @@
     plates.forEach((plate) => plateObserver.observe(plate));
   }
 
-  /* ---------- Project head (reveal-line) ---------- */
   const projectHeads = document.querySelectorAll('.project-head');
   if (projectHeads.length) {
     const projectHeadObserver = new IntersectionObserver((entries) => {
@@ -1165,7 +1211,7 @@
         if (entry.isIntersecting) {
           const lines = entry.target.querySelectorAll('.reveal-line');
           requestAnimationFrame(() => {
-             lines.forEach((el, i) => {
+            lines.forEach((el, i) => {
               el.style.transitionDelay = Math.min(i * STAGGER, 0.7) + 's';
               el.classList.add('in-view');
             });
@@ -1180,7 +1226,6 @@
     });
   }
 
-  /* ---------- 4 video affiancati (lazy) ---------- */
   const videoQuad = document.getElementById('videoQuadDoppel');
   const videoQuadVideoEls = videoQuad ? videoQuad.querySelectorAll('video') : [];
   let videoQuadLoaded = false;
